@@ -2,14 +2,14 @@ Handling Time
 =====
 
 Time in DSFML
-===
+---
 
 Just like the SFML implementation of time, DSFML doesn't impose a specific unit or type for time values, like always being a float for seconds or long for milliseconds and leaving it up to the programmer to convert as needed. It instead provides a struct, [dsfml.system.time.Time](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/time.d), that wraps this functionality.
 
 The [Time](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/time.d) struct contains a relative time value or time span. It's exclusively a value used to represent a certain amount of time, as opposed to a full-on date-time class.
 
 Converting Time
-===
+---
 
 A [Time](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/time.d) object can be created from any of the source units: seconds, milliseconds, or microseconds. There is a (non-member) function to turn each of them into a [Time](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/time.d):
 
@@ -32,7 +32,7 @@ float sec  = time.asSeconds();
 ```
 
 Playing With Time Values
-===
+---
 
 [Time](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/time.d) is just an amount of time, so it supports arithmetic operations such as addition, subtraction, comparison, etc. Times can also be negative.
 
@@ -47,7 +47,7 @@ bool b2 = (t3 > t4);
 ```
 
 Measuring Time
-===
+---
 
 Now that we've seen how to manipulate time values with DSFML, let's see how to do something that almost every program needs: measuring the time elapsed.
 
