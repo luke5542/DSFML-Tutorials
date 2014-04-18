@@ -7,3 +7,4 @@ A series of tutorials for DSFML, based upon Laurent's tutorials for [SFML](http:
 System Module
 ===
 * [Handling Time](https://github.com/luke5542/DSFML-Tutorials/blob/master/time.md)
+* [User Data Streams](https://github.com/luke5542/DSFML-Tutorials/blob/master/streams.md)
