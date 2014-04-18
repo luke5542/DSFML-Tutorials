@@ -1,7 +1,7 @@
 DSFML-Tutorials
 =====
 
-A series of tutorials for DSFML, based upon the tutorials from SFML.
+A series of tutorials for DSFML, based upon Laurent's tutorials for [SFML](http://www.sfml-dev.org/tutorials/2.0/).
 
 
 System Module
