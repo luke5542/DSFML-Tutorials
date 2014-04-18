@@ -163,8 +163,8 @@ if(streamTexture.loadFromStream(stream))
 Common Mistakes
 ---
 
-Some resource classes are not loaded completely after loadFromStream has been called. Instead, they continue to read from their data source as long as they are used. This is the case for sf::Music, which streams audio samples as they are played, and for sf::Font, which loads glyphs on the fly depending on the texts content.
+Some resource classes are not loaded completely after `loadFromStream` has been called. Instead, they continue to read from their data source as long as they are used. This is the case for [dsfml.audio.music.Music](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/audio/music.d), which streams audio samples as they are played, and for [dsfml.graphics.font.Font](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/font.d), which loads glyphs on the fly depending on the texts content.
 
 As a consequence, the stream instance that you used to load a music or a font, as well as its data source, must remain alive as long as the resource uses it. If it is destroyed while still being used, the behaviour is undefined (can be a crash, corrupt data, or nothing visible).
 
-Another common mistake is to return whatever the internal functions return directly, but sometimes it doesn't match what SFML expects.
+Another common mistake is to return whatever the internal functions return directly, but sometimes it doesn't match what DSFML expects. For example, a function you use internally for `seek` could return 0 for success instead of the position.
