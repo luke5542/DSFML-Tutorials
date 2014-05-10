@@ -31,6 +31,7 @@ The second argument is simply the title of the window.
 
 This constructor accepts a third optional argument: a style, which allows to choose which decorations and features you want. You can use any combination of the following styles: 
 
+--- | ---
 sf::Style::None | No decoration at all (useful for splash screens, for example); this style cannot be combined with others
 sf::Style::Titlebar | The window has a titlebar
 sf::Style::Resize | The window can be resized and has a maximize button
