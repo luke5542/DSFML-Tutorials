@@ -6,7 +6,7 @@ Introduction
 
 DSFML has several resource classes: images, fonts, sounds, etc. In most programs, these resources will be loaded from files, with the help of their `loadFromFile` method. In a few other situations, resources will be packed directly into the executable or in a big data file, and loaded from memory with `loadFromMemory`. These methods cover *almost* all the possible use cases -- but they are not without their limits.
 
-Sometimes you want to load files from unusual places, such as a compressed/encrypted archive, or a remote network location, for example. For these special situations, DSFML provides a third loading method: `loadFromStream`. This method reads data from an [dsfml.system.inputstream.InputStream](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/inputstream.d) interface, which allows you to define your own implementations.
+Sometimes you want to load files from unusual places, such as a compressed/encrypted archive, or a remote network location, for example. For these special situations, DSFML provides a third loading method: `loadFromStream`. This method reads data from an [InputStream](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/inputstream.d) interface, which allows you to define your own implementations.
 
 In this tutorial you'll learn how to write and use your own derived input stream.
 
@@ -163,7 +163,7 @@ if(streamTexture.loadFromStream(stream))
 Common Mistakes
 ---
 
-Some resource classes are not loaded completely after `loadFromStream` has been called. Instead, they continue to read from their data source as long as they are used. This is the case for [dsfml.audio.music.Music](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/audio/music.d), which streams audio samples as they are played, and for [dsfml.graphics.font.Font](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/font.d), which loads glyphs on the fly depending on the texts content.
+Some resource classes are not loaded completely after `loadFromStream` has been called. Instead, they continue to read from their data source as long as they are used. This is the case for [Music](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/audio/music.d), which streams audio samples as they are played, and for [Font](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/font.d), which loads glyphs on the fly depending on the texts content.
 
 As a consequence, the stream instance that you used to load a music or a font, as well as its data source, must remain alive as long as the resource uses it. If it is destroyed while still being used, the behaviour is undefined (can be a crash, corrupt data, or nothing visible).
 
