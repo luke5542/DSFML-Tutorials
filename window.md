@@ -37,7 +37,7 @@ sf::Style::Titlebar | The window has a titlebar
 sf::Style::Resize | The window can be resized and has a maximize button
 sf::Style::Close | The window has a close button
 sf::Style::Fullscreen | The window is shown in fullscreen mode; this style cannot be combined with others, and requires a valid video mode
-sf::Style::Default | The default style, which is a shortcut for `Titlebar | Resize | Close`
+sf::Style::Default | The default style, which is a shortcut for `Titlebar OR Resize OR Close`
 
 Bringing the Window to Life
 ---
