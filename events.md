@@ -50,6 +50,7 @@ The Closed Event
 
 The `Event.EventType.Closed` event is triggered when the user wants to close the window, by all the possible ways that the OS provides ("close" button, keyboard shortcut, etc.). This event only represents a close request, the window is not physically closed.
 
+
 A typical code will just call `window.close()` in reaction to this event, to actually close the window. But you may also want to do something, like saving the current application state or asking the user what to do. If you don't do anything, the window remains open.
 
 There's no member associated to this event in the Event union.
@@ -80,6 +81,7 @@ The LostFocus and GainedFocus Events
 ---
 
 The `Event.EventType.LostFocus` and `Event.EventType.GainedFocus` events are triggered when the window loses/gains the focus, which happens when you switch the currently active window. When the window is out of focus, it doesn't receive keyboard events.
+
 
 This event can be used if you want to pause your game when the window is inactive.
 
