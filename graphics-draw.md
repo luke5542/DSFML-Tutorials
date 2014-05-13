@@ -13,7 +13,7 @@ The Drawing Window
 
 To draw the entities provided by the graphics module, you must use a specialized window class: [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d). This class derives from [Window](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/window.d), and inherits all its functions. Everything that you've learnt about [Window](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/window.d) (creation, event handling, controlling the framerate, mixing with OpenGL, etc.) is applicable to [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d).
 
-On top of that, [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d) adds high-level functions to help you draw things easily. In this tutorial we'll focus on two of these functions: clear and draw. They are as simple as their name: clear clears the whole window with the chosen color, and draw draws whatever object you give to it.
+On top of that, [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d) adds high-level functions to help you draw things easily. In this tutorial we'll focus on two of these functions: `clear` and `draw`. They are as simple as their name: `clear` clears the whole window with the chosen color, and `draw` draws whatever object you give to it.
 
 Here is what a typical main loop looks like with a render window:
 
