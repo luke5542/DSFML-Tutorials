@@ -53,7 +53,7 @@ The `Event.EventType.Closed` event is triggered when the user wants to close the
 
 A typical code will just call `window.close()` in reaction to this event, to actually close the window. But you may also want to do something, like saving the current application state or asking the user what to do. If you don't do anything, the window remains open.
 
-There's no member associated to this event in the Event union.
+There's no member associated to this event in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
 
 ```
 if (event.type == Event.EventType.Closed)
@@ -85,7 +85,7 @@ The `Event.EventType.LostFocus` and `Event.EventType.GainedFocus` events are tri
 
 This event can be used if you want to pause your game when the window is inactive.
 
-There's no member associated to these events in the Event union.
+There's no member associated to these events in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
 
 ```
 if (event.type == Event.EventType.LostFocus)
@@ -102,13 +102,12 @@ The `Event.EventType.TextEntered` event is triggered when a character is typed. 
 
 This event is typically used to catch user input in a text field.
 
-The member associated to this event is event.text, it contains the Unicode value of the entered character. You can either put it directly in a String, or cast it to a char after making sure that it is in the ASCII range (0 - 127).
+The member associated to this event is `event.text`, it contains the Unicode value of the entered character. This is stored internally as a `dchar`.
 
 ```
 if (event.type == Event.EventType.TextEntered)
 {
-    if (event.text.unicode < 128)
-        writeln("ASCII character typed: ", event.text.unicode);
+    writeln("Character typed: ", event.text.unicode);
 }
 ```
 
@@ -126,7 +125,7 @@ If a key is held, multiple `KeyPressed` events will be generated, at the default
 
 This event is the one to use if you want to trigger an action exactly once when a key is pressed or released, like making a character jump with space, or exiting something with escape.
 
-> Sometimes, people try to use the KeyPressed event to implement smooth movement. Doing so will not produce smooth movements, because when you hold a key you only get a few events (remember, the repeat delay). Smooth movements can only be achieved by using real-time keyboard input with Keyboard (see the dedicated tutorial).
+> Sometimes, people try to use the KeyPressed event to implement smooth movement. Doing so will not produce smooth movements, because when you hold a key you only get a few events (remember, the repeat delay). Smooth movements can only be achieved by using real-time keyboard input with [Keyboard](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/keyboard.d) (see the [dedicated tutorial](https://github.com/luke5542/DSFML-Tutorials/blob/master/inputs.md)).
 
 The member associated to these events is event.key, it contains the code of the pressed/released key, as well as the current state of modifier keys (alt, control, shift, system).
 
@@ -205,7 +204,7 @@ The MouseEntered and MouseLeft Event
 
 The `Event.EventType.MouseEntered` and `Event.EventType.MouseLeft` events are triggered when the mouse cursor enters/leaves the window.
 
-There's no member associated to these events in the Event union.
+There's no member associated to these events in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
 
 ```
 if (event.type == Event.EventType.MouseEntered)
