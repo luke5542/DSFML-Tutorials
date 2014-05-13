@@ -14,3 +14,11 @@ Window Module
 * [Opening and Managing a DSFML Window](https://github.com/luke5542/DSFML-Tutorials/blob/master/window.md)
 * [Events Explained](https://github.com/luke5542/DSFML-Tutorials/blob/master/events.md)
 * [Keyboard, Mouse, and Joysticks](https://github.com/luke5542/DSFML-Tutorials/blob/master/inputs.md)
+
+Graphics Module
+===
+* [Drawing 2D Stuff](https://github.com/luke5542/DSFML-Tutorials/blob/master/graphics-draw.md)
+* [Sprites and Textures](https://github.com/luke5542/DSFML-Tutorials/blob/master/sprites.md)
+* [Text and Fonts](https://github.com/luke5542/DSFML-Tutorials/blob/master/text.md)
+* [Shapes](https://github.com/luke5542/DSFML-Tutorials/blob/master/shapes.md)
+* [Designing Your own Entities with Vertex Arrays](https://github.com/luke5542/DSFML-Tutorials/blob/master/vertex-arrays.md)
