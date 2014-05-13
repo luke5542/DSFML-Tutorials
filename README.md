@@ -8,3 +8,9 @@ System Module
 ===
 * [Handling Time](https://github.com/luke5542/DSFML-Tutorials/blob/master/time.md)
 * [User Data Streams](https://github.com/luke5542/DSFML-Tutorials/blob/master/streams.md)
+
+Window Module
+===
+* [Opening and Managing a DSFML Window](https://github.com/luke5542/DSFML-Tutorials/blob/master/window.md)
+* [Events Explained](https://github.com/luke5542/DSFML-Tutorials/blob/master/events.md)
+* [Keyboard, Mouse, and Joysticks](https://github.com/luke5542/DSFML-Tutorials/blob/master/inputs.md)
