@@ -8,7 +8,7 @@ Most (if not all) of you are already familiar with these two very common objects
 
 A texture is an image. But we call it "texture" because it has a very specific role: being mapped to a 2D entity.
 
-A sprite is nothing more than a textured rectangle.
+A [Sprite](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/sprite.d) is nothing more than a textured rectangle.
 
 ![Rectangular Entity + Texture = Sprite](http://www.sfml-dev.org/tutorials/2.0/images/graphics-sprites-definition.png "Rectangular Entity + Texture = Sprite")
 
