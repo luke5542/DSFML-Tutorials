@@ -46,116 +46,150 @@ shape.outlineColor = new Color(250, 150, 100);
 
 By default, the outline expands outside the shape (if you have a circle with a radius of 10 and an outline thickness of 5, the total radius of the circle will be 15). You can make it expand towards the center of the shape instead, by giving a negative thickness.
 
-To disable the outline, set its thickness to 0. If you want the outline only, you can set the fill color to sf::Color::Transparent.
+To disable the outline, set its thickness to 0. If you want the outline only, you can set the fill color to `Color.Transparent`.
+
 Texture
+-
 
-Shapes can also be textured, like sprites. To specify which part of the texture must be mapped to the shape, you must use the setTextureRect function. It takes the texture rectangle to map to the bounding rectangle of the shape. This method doesn't offer maximum flexibility, but it is much easier to use than individually setting the texture coordinates of each point of the shape.
+Shapes can also be textured, like sprites. To specify which part of the texture must be mapped to the shape, you must specify the texture rectangle with the `textureRect` property. It takes the texture rectangle to map to the bounding rectangle of the shape. This method doesn't offer maximum flexibility, but it is much easier to use than individually setting the texture coordinates of each point of the shape.
 
-sf::CircleShape shape(50);
+```
+CircleShape shape = new CircleShape(50);
 
 // map a 100x100 textured rectangle to the shape
-shape.setTexture(&texture); // texture is a sf::Texture
-shape.setTextureRect(sf::IntRect(10, 10, 100, 100));
+shape.setTexture(texture); // texture is a Texture
+shape.textureRect = new IntRect(10, 10, 100, 100);
+```
 
-A textured shape
+![A Textured Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-texture.png "A Textured Shape")
 
 Note that the outline is not textured.
 In case the shape has a fill color, the texture is modulated (multiplied) with it.
-To disable texturing, call setTexture(NULL).
+To disable texturing, call `setTexture(null)`.
+
 Drawing a shape
+---
 
-Drawing a shape is as simple as drawing any other SFML entity:
+Drawing a shape is as simple as drawing any other DSFML entity:
 
+```
 window.draw(shape);
+```
 
 Built-in shape types
+---
+
 Rectangles
+-
 
-To draw rectangles, you must use the sf::RectangleShape class. It has only one attribute: the size of the rectangle.
+To draw rectangles, you must use the [RectangleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rectangleshape.d) class. It has only one attribute: the size of the rectangle.
 
+```
 // define a 120x50 rectangle
-sf::RectangleShape rectangle(sf::Vector2f(120, 50));
+RectangleShape rectangle = new RectangleShape(new Vector2f(120, 50));
 
 // change the size to 100x100
-rectangle.setSize(sf::Vector2f(100, 100));
+rectangle.size = new Vector2f(100, 100);
+```
 
-A rectangle shape
+![A Rectangle Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-rectangle.png "A Rectangle Shape")
+
 Circles
+-
 
-Circles are represented by the sf::CircleShape class. It has two attributes: the radius and the number of sides. The number of sides is an optional attribute, it allows you to adjust the "quality" of the circle: circles have to be simulated by polygons with many sides (the graphics card is unable to draw a perfect circle directly), and this attribute defines how many sides your circle will have. If you draw small circles, you'll probably need only a few sides. If you draw big circles, or zoom on regular circles, you'll most likely need more sides.
+Circles are represented by the [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) class. It has two attributes: the radius and the number of sides. The number of sides is an optional attribute, it allows you to adjust the "quality" of the circle: circles have to be simulated by polygons with many sides (the graphics card is unable to draw a perfect circle directly), and this attribute defines how many sides your circle will have. If you draw small circles, you'll probably need only a few sides. If you draw big circles, or zoom on regular circles, you'll most likely need more sides.
 
+```
 // define a circle with radius = 200
-sf::CircleShape circle(200);
+CircleShape circle = new CircleShape(200);
 
 // change the radius to 40
-circle.setRadius(40);
+circle.radius = 40;
 
 // change the number of sides (points) to 100
-circle.setPointCount(100);
+circle.pointCount = 100;
+```
 
-A circle shape
+![A Circle Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-circle.png "A Circle Shape")
+
 Regular polygons
+-
 
-There's no dedicated class for regular polygons, in fact you can get a regular polygon of any number of sides with the sf::CircleShape class: indeed, since circles are simulated by polygons with many sides, you just have to play with the number of sides to get the desired polygons. A sf::CircleShape with 3 points is a triangle, with 4 points it's a square, etc.
+There's no dedicated class for regular polygons, in fact you can get a regular polygon of any number of sides with the [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) class: indeed, since circles are simulated by polygons with many sides, you just have to play with the number of sides to get the desired polygons. A [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) with 3 points is a triangle, with 4 points it's a square, etc.
 
+```
 // define a triangle
-sf::CircleShape triangle(80, 3);
+CircleShape triangle = new CircleShape(80, 3);
 
 // define a square
-sf::CircleShape square(80, 4);
+CircleShape square = CircleShape(80, 4);
 
 // define an octagon
-sf::CircleShape octagon(80, 8);
+CircleShape octagon = new CircleShape(80, 8);
+```
 
-Regular polygons
+![Regular Polygons](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-regular.png "Regular Polygons")
+
 Convex shapes
+-
 
-The sf::ConvexShape class is the ultimate shape class: it allows you to define any shape, as long as it stays convex. Indeed, SFML is unable to draw concave shapes; if you need to draw a concave shape, you'll have to split it into multiple convex polygons (if possible).
+The [ConvexShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/convexshape.d) class is the ultimate shape class: it allows you to define any shape, as long as it stays convex. Indeed, DSFML is unable to draw concave shapes; if you need to draw a concave shape, you'll have to split it into multiple convex polygons (if possible).
 
 To define a convex shape, you must first set the total number of points, and then define these points.
 
+```
 // create an empty shape
-sf::ConvexShape convex;
+ConvexShape convex = new ConvexShape();
 
 // resize it to 5 points
-convex.setPointCount(5);
+convex.pointCount = 5;
 
 // define the points
-convex.setPoint(0, sf::Vector2f(0, 0));
-convex.setPoint(1, sf::Vector2f(150, 10));
-convex.setPoint(2, sf::Vector2f(120, 90));
-convex.setPoint(3, sf::Vector2f(30, 100));
-convex.setPoint(4, sf::Vector2f(0, 50));
+convex.setPoint(0, new Vector2f(0, 0));
+convex.setPoint(1, new Vector2f(150, 10));
+convex.setPoint(2, new Vector2f(120, 90));
+convex.setPoint(3, new Vector2f(30, 100));
+convex.setPoint(4, new Vector2f(0, 50));
+```
 
-It is very important to define the points of a convex shape either in clockwise or anticlockwise order. If you define them in a random order, the result will be undefined.
-A convex shape
+> It is very important to define the points of a convex shape either in clockwise or anticlockwise order. If you define them in a random order, the result will be undefined.
 
-Officially, sf::ConvexShape can only create convex shapes. But in fact, its requirements are a little more relaxed. In fact, the only technical constraint that your shape must follow, is that if you draw a line from its center of gravity to any of its point, you mustn't cross an edge. With this relaxed definition, you can for example draw stars.
+![A Convex Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-convex.png "A Convex Shape")
+
+Officially, [ConvexShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/convexshape.d) can only create convex shapes. But in fact, its requirements are a little more relaxed. In fact, the only technical constraint that your shape must follow, is that if you draw a line from its center of gravity to any of its point, you mustn't cross an edge. With this relaxed definition, you can for example draw stars.
+
 Lines
+-
 
 There's no shape class for lines. The reason is simple: if your line has a thickness, it is a rectangle; if it doesn't, it can be drawn with a line primitive.
 
 Line with thickness:
 
-sf::RectangleShape line(sf::Vector2f(150, 5));
+```
+RectangleShape line = new RectangleShape(new Vector2f(150, 5));
 line.rotate(45);
+```
 
-A line shape drawn as a rectangle
+![A Line Shape Drawn as a Rectangle](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-line-rectangle.png "A Line Shape Drawn as a Rectangle")
 
 Line without thickness:
 
-sf::Vertex line[] =
-{
-    sf::Vertex(sf::Vector2f(10, 10)),
-    sf::Vertex(sf::Vector2f(150, 150))
-};
+```
+Vertex[2] line =
+[
+    new Vertex(new Vector2f(10, 10)),
+    new Vertex(new Vector2f(150, 150))
+];
 
-window.draw(line, 2, sf::Lines);
+window.draw(line, 2, PrimitiveType.Lines);
+```
 
-A line shape drawn as a primitive
+![A Line Shape Drawn as a Primitive](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-line-primitive.png "A Line Shape Drawn as a Primitive")
 
-To learn more about vertices and primitives, you can read the Vertex arrays tutorial.
+To learn more about vertices and primitives, you can read the [Vertex Arrays](https://github.com/luke5542/DSFML-Tutorials/blob/master/vertex-arrays.md) tutorial.
+
 Custom shape types
+---
 
 You can extend the set of shape classes with your own shape types. To do so, you must derive from sf::Shape and override two functions:
 
