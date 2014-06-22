@@ -191,67 +191,77 @@ To learn more about vertices and primitives, you can read the [Vertex Arrays](ht
 Custom shape types
 ---
 
-You can extend the set of shape classes with your own shape types. To do so, you must derive from sf::Shape and override two functions:
+You can extend the set of shape classes with your own shape types. To do so, you must derive from [Shape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shape.d) and override two functions:
 
-    getPointCount: return the number of points of the shape
-    getPoint: return a point of the shape
++ `getPointCount`: return the number of points of the shape
++ `getPoint`: return a point of the shape
 
-You must also call the update() protected function whenever the points of your shape change, so that the base class knows about it and can update its internal state.
+You must also call the `update` protected function whenever the points of your shape change, so that the base class knows about it and can update its internal state.
 
 Here is a complete example of a custom shape class: EllipseShape.
 
-class EllipseShape : public sf::Shape
+```
+class EllipseShape : Shape
 {
-public :
 
-    explicit EllipseShape(const sf::Vector2f& radius = sf::Vector2f(0, 0)) :
-    m_radius(radius)
-    {
-        update();
+    private {
+        Vector2f m_radius;
     }
 
-    void setRadius(const sf::Vector2f& radius)
-    {
-        m_radius = radius;
-        update();
-    }
+    public :
 
-    const sf::Vector2f& getRadius() const
-    {
-        return m_radius;
-    }
+        this(Vector2f radius = Vector2f(0, 0)) {
+            m_radius = radius;
+            update();
+        }
 
-    virtual unsigned int getPointCount() const
-    {
-        return 30; // fixed, but could be an attribute of the class if needed
-    }
+        @property
+        {
+            Vector2f radius(Vector2f newRadius)
+            {
+                m_radius = newRadius;
+                update();
+                return newRadius;
+            }
 
-    virtual sf::Vector2f getPoint(unsigned int index) const
-    {
-        static const float pi = 3.141592654f;
+            Vector2f radius()
+            {
+                return m_radius;
+            }
+        }
 
-        float angle = index * 2 * pi / getPointCount() - pi / 2;
-        float x = std::cos(angle) * m_radius.x;
-        float y = std::sin(angle) * m_radius.y;
+        override uint getPointCount()
+        {
+            return 30; // fixed, but could be an attribute of the class if needed
+        }
 
-        return sf::Vector2f(m_radius.x + x, m_radius.y + y);
-    }
+        override Vector2f getPoint(uint index) const
+        {
 
-private :
+            float angle = index * 2 * PI / getPointCount() - PI / 2;
+            float x = cos(angle) * m_radius.x;
+            float y = sin(angle) * m_radius.y;
 
-    sf::Vector2f m_radius;
-};
+            return Vector2f(m_radius.x + x, m_radius.y + y);
+        }
 
-An ellipse shape
-Antialiased shapes
+}
+```
 
-There's no option to antialias a single shape. If you want to get antialiased shapes (ie. shapes with smooth edges), you must enable antialiasing globally when you create the window, with the corresponding attribute of the sf::ContextSettings structure.
+![An Ellipse Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-ellipse.png "An Ellipse Shape")
 
-sf::ContextSettings settings;
+Antialiased Shapes
+---
+
+There's no option to antialias a single shape. If you want to get antialiased shapes (ie. shapes with smooth edges), you must enable antialiasing globally when you create the window, with the corresponding attribute of the [ContextSettings](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/contextsettings.d) structure.
+
+```
+ContextSettings settings = new ContextSettings();
 settings.antialiasingLevel = 8;
 
-sf::RenderWindow window(sf::VideoMode(800, 600), "SFML shapes", sf::Style::Default, settings);
+RenderWindow window(VideoMode(800, 600), "SFML shapes", Style.Default, settings);
+```
 
-Aliased vs antialiased shape
+![Aliased vs Antialiased Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-antialiasing.png "Aliased vs Antialiased Shape")
 
 Remember that antialiasing depends on the graphics card: it may either not support it, or have it forced to off in the driver settings.
