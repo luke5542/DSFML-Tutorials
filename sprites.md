@@ -21,7 +21,7 @@ So, before creating any sprite, we need a valid texture. The class that encapsul
 
 The most common way of loading a texture is from an image file on disk, which is done with the loadFromFile function.
 
-```
+```D
 Texture texture = new Texture();
 if (!texture.loadFromFile("image.png"))
 {
@@ -37,7 +37,7 @@ DSFML supports the most common file formats. The full list is available in the A
 
 All these loading functions have an optional argument, which can be used if you want to load a smaller part of the image.
 
-```
+```D
 // load a 32x32 rectangle that starts at (10, 10)
 if (!texture.loadFromFile("image.png", IntRect(10, 10, 32, 32)))
 {
@@ -49,7 +49,7 @@ The `IntRect` struct is a simple utility type that represents a rectangle, and i
 
 If you don't want to load a texture from an image, but rather want to update it directly from an array of pixels, you can create it empty and update it later:
 
-```
+```D
 // create an empty 200x200 texture
 if (!texture.create(200, 200))
 {
@@ -61,7 +61,7 @@ Note that the contents of the texture are undefined at this point.
 
 To update the pixels of an existing texture, you must use the update function. It has overloads for many sources:
 
-```
+```D
 // update a texture from an array of pixels
 ubyte[] pixels pixels = new ubyte[width * height * 4]; // * 4 because pixels have 4 components (RGBA)
 ...
@@ -84,7 +84,7 @@ Additionally, a texture has two properties that change how it is rendered.
 
 The first property allows one to smooth the texture. Smoothing a texture makes its pixels less visible (but a little more blurry), which can be important if it is scaled.
 
-```
+```D
 texture.setSmooth(true);
 ```
 
@@ -95,7 +95,7 @@ Since smoothing interpolates adjacent pixels in the texture, it can have the unw
 
 The second property allows one to repeat a texture within a single sprite.
 
-```
+```D
 texture.setRepeated(true);
 ```
 
@@ -108,7 +108,7 @@ Ok, Can I Have My Sprite Now?
 
 Yes, you can now create your sprite.
 
-```
+```D
 Sprite sprite = new Sprite();
 sprite.setTexture(texture);
 
@@ -120,13 +120,13 @@ window.draw(sprite);
 
 If you don't want your sprite to show the full texture, you can set its texture rectangle.
 
-```
+```D
 sprite.setTextureRect(IntRect(10, 10, 32, 32));
 ```
 
 You can also change the color of a sprite. The color that you set is modulated (multiplied) with the texture of the sprite. This can also be used to change the global transparency (alpha) of the sprite.
 
-```
+```D
 sprite.setColor(Color(0, 255, 0)); // green
 sprite.setColor(Color(255, 255, 255, 128)); // half transparent
 ```
@@ -137,7 +137,7 @@ These sprites all use the same texture, but have a different color:
 
 Sprites can also be transformed: they have a position, an orientation and a scale.
 
-```
+```D
 // position
 sprite.position(Vector2f(10, 50)); // absolute position
 
@@ -151,7 +151,7 @@ sprite.scale(Vector2f(0.5f, 2f)); // absolute scale factor
 
 By default, the origin for these three transformations is the top-left corner of the sprite. If you want to set the origin to a different point (for example the center of the sprite, or another corner), you can use the `setOrigin` function.
 
-```
+```D
 sprite.origin(Vector2f(25, 25));
 ```
 

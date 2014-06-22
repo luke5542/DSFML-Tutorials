@@ -11,7 +11,7 @@ Opening a Window
 
 Windows in SFML are defined by the [Window](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/window.d) class. A window can be created and opened directly upon construction:
 
-```
+```D
 import dsfml.window;
 
 
@@ -49,7 +49,7 @@ If you try to execute the code above with nothing in place of the "...", you wil
 
 So let's add a little something to make this program more interesting: 
 
-```
+```D
 import dsfml.window;
 
 
@@ -97,7 +97,7 @@ Playing With the Window
 
 Of course, DSFML allows you to play a little bit with your windows. Basic window operations such as changing the size, position, title or icon are supported, but unlike dedicated GUI libraries (Qt, wxWidgets), DSFML doesn't provide advanced features. DSFML windows are only meant to provide a base for OpenGL or DSFML drawing.
 
-```
+```D
 // change the position of the window (relatively to the desktop)
 window.position = Vector2i(10, 50);
 
@@ -119,7 +119,7 @@ You can refer to the API documentation for a complete list of [Window](https://g
 
 In case you really need advanced features for your window, you can create one (or even a full GUI) with another library, and embed DSFML into it. To do so, you can use the other constructor, or create function, of sf::Window which takes the OS-specific handle of an existing window. In this case, DSFML will create a drawing context inside the given window, and catch all its events, without disturbing the initial window management. 
 
-```
+```D
 WindowHandle handle = /* specific to what you're doing and the library you're using */;
 Window window(handle);
 ```
@@ -141,7 +141,7 @@ Controlling the Framerate
 Sometimes, when your application runs fast, you may notice visual artifacts such as tearing. The reason is that your application's refresh rate is not synchronized with the vertical frequency of the monitor, and as a result, the bottom of the previous frame is mixed with the top of the next one.
 The solution to this problem is to activate *vertical synchronization*. It is automatically handled by the graphics card, and can easily be switched on and off with the `setVerticalSyncEnabled` function:
 
-```
+```D
 window.setVerticalSyncEnabled(true); // call it once, after creating the window
 ```
 
@@ -151,7 +151,7 @@ After this call, your application will run at the same frequency as the monitor,
 
 In other situations, you may also want your application to run at a given framerate, instead of the monitor's frequency. This can be done by calling `setFramerateLimit`:
 
-```
+```D
 window.setFramerateLimit(30); // call it once, after creating the window
 ```
 

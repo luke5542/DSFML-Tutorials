@@ -22,7 +22,8 @@ Input Stream
 ---
 
 The [InputStream](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/inputstream.d) interface declares four methods:
-```
+
+```D
 interface InputStream
 {
     long read(void[] data);
@@ -55,7 +56,8 @@ In this example we'll use D's file API, so we have a [File](http://dlang.org/pho
 An interesting note, while D has many links back to the C/C++ APIs, in this specific example when we use [File](http://dlang.org/phobos/std_stdio.html#.File), we are actually using an encapsulation of FILE* that is automatically cleaned up for us when our m_file reference leaves scope.
 
 Here is the implementation:
-```
+
+```D
 class FileStream:InputStream
 {
     File m_file;
@@ -148,8 +150,8 @@ Using Your Stream
 ---
 
 Using a custom stream class is straight-forward: instanciate it, and pass it to the `loadFromStream` (or `openFromStream`) method of the object that you want to load.
-```
 
+```D
 auto stream = new FileStream();
 stream.open("image.png");
 

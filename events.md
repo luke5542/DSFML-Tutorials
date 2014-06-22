@@ -15,7 +15,7 @@ Before dealing with events, it is important to understand what the [Event](https
 
 To be clear, here is what a typical event loop looks like:
 
-```
+```D
 Event event;
 
 while(window.pollEvent(event))
@@ -55,7 +55,7 @@ A typical code will just call `window.close()` in reaction to this event, to act
 
 There's no member associated to this event in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
 
-```
+```D
 if (event.type == Event.EventType.Closed)
     window.close();
 ```
@@ -69,7 +69,7 @@ You can use this event to adjust the rendering settings: the viewport if you use
 
 The member associated to this event is `event.size`, it contains the new size of the window.
 
-```
+```D
 if (event.type == Event.EventType.Resized)
 {
     writeln("new width: ", event.size.width);
@@ -87,7 +87,7 @@ This event can be used if you want to pause your game when the window is inactiv
 
 There's no member associated to these events in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
 
-```
+```D
 if (event.type == Event.EventType.LostFocus)
     myGame.pause();
 
@@ -104,7 +104,7 @@ This event is typically used to catch user input in a text field.
 
 The member associated to this event is `event.text`, it contains the Unicode value of the entered character. This is stored internally as a `dchar`.
 
-```
+```D
 if (event.type == Event.EventType.TextEntered)
 {
     writeln("Character typed: ", event.text.unicode);
@@ -129,7 +129,7 @@ This event is the one to use if you want to trigger an action exactly once when 
 
 The member associated to these events is event.key, it contains the code of the pressed/released key, as well as the current state of modifier keys (alt, control, shift, system).
 
-```
+```D
 if (event.type == Event.EventType.KeyPressed)
 {
     if (event.key.code == Keyboard.Key.Escape)
@@ -152,7 +152,7 @@ The `Event.EventType.MouseWheelMoved` event is triggered when the mouse wheel mo
 
 The member associated to this event is `event.mouseWheel`, it contains the amount of ticks the wheel has moved, as well as the current position of the mouse cursor.
 
-```
+```D
 if (event.type == Event.EventType.MouseWheelMoved)
 {
     writeln("wheel movement: ", event.mouseWheel.delta);
@@ -170,7 +170,7 @@ DSFML supports 5 mouse buttons: left, right, middle (wheel), extra #1 and extra 
 
 The member associated to these events is `event.mouseButton`, it contains the code of the pressed/released button, as well as the current position of the mouse cursor.
 
-```
+```D
 if (event.type == Event.EventType.MouseButtonPressed)
 {
     if (event.mouseButton.button == Mouse.Button.Right)
@@ -191,7 +191,7 @@ This event is triggered even if the window doesn't have the focus. However, it i
 
 The member associated to this event is `event.mouseMove`, it contains the current position of the mouse cursor relatively to the window.
 
-```
+```D
 if (event.type == Event.EventType.MouseMoved)
 {
     writeln("new mouse x: ", event.mouseMove.x);
@@ -206,7 +206,7 @@ The `Event.EventType.MouseEntered` and `Event.EventType.MouseLeft` events are tr
 
 There's no member associated to these events in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
 
-```
+```D
 if (event.type == Event.EventType.MouseEntered)
     writeln("the mouse cursor has entered the window");
 
@@ -223,7 +223,7 @@ DSFML supports up to 8 joysticks and 32 buttons.
 
 The member associated to these events is `event.joystickButton`, it contains the identifier of the joystick and the index of the pressed/released button.
 
-```
+```D
 if (event.type == Event.EventType.JoystickButtonPressed)
 {
     writeln("joystick button pressed!");
@@ -243,7 +243,7 @@ DSFML supports 8 joystick axes: X, Y, Z, R, U, V, POV X and POV Y. How they map 
 
 The member associated to this event is `event.joystickMove`, it contains the identifier of the joystick, the name of the axis, and its current position (in the range [-100, 100]).
 
-```
+```D
 if (event.type == Event.EventType.JoystickMoved)
 {
     if (event.joystickMove.axis == Joystick.X)
@@ -262,7 +262,7 @@ The `Event.EventType.JoystickConnected` and `Event.EventType.JoystickDisconnecte
 
 The member associated to this event is `event.joystickConnect`, it contains the identifier of the connected/disconnected joystick.
 
-```
+```D
 if (event.type == Event.EventType.JoystickConnected)
     writeln("joystick connected: ", event.joystickConnect.joystickId);
 

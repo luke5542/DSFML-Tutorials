@@ -9,7 +9,7 @@ Before drawing text, you need a character font -- like in any other program that
 
 The most common way of loading a font is from a file on disk, which is done with the `loadFromFile` function.
 
-```
+```D
 Font font = new Font();
 if (!font.loadFromFile("arial.ttf"))
 {
@@ -32,7 +32,7 @@ Drawing Text
 
 To draw text, you need to use the Text class. It's very simple to use:
 
-```
+```D
 Text text = new Text();
 
 // select the font
@@ -67,7 +67,7 @@ If Text is too limited, or if you want to do something else with pre-rendered gl
 
 First, you can retrieve the texture which contains all the pre-rendered glyphs of a certain size:
 
-```
+```D
 const(Texture) texture = font.getTexture(characterSize);
 ```
 
@@ -75,7 +75,7 @@ Note that glyphs are added to the texture when they are requested. There are so 
 
 To make something useful of the glyph texture, you must then get the texture coordinates of glyphs that are contained in it:
 
-```
+```D
 Glyph glyph = font.getGlyph(character, characterSize, bold);
 ```
 
@@ -89,7 +89,7 @@ The Glyph structure contains three members:
 
 Finally, you can get some other metrics of the font, such as the line height or the kerning (always for a certain character size):
 
-```
+```D
 int lineHeight = font.getLineHeight(characterSize);
 
 int kerning = font.getKerning(character1, character2, characterSize);

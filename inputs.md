@@ -14,7 +14,7 @@ The class that gives access to the keyboard state is [Keyboard](https://github.c
 
 This function directly reads the keyboard state, ignoring the focus state of your window. This means that `isKeyPressed` may return true even if your window is inactive.
 
-```
+```D
 if (Keyboard.isKeyPressed(Keyboard.Key.Left))
 {
     // left key is pressed: move our character
@@ -33,7 +33,7 @@ The class that gives access to the mouse state is [Mouse](https://github.com/Jeb
 
 You can check if buttons are pressed:
 
-```
+```D
 if (Mouse.isButtonPressed(Mouse.Button.Left))
 {
     // left mouse button is pressed: shoot
@@ -45,7 +45,7 @@ Mouse button codes are defined in the `Mouse.Button` enum. DSFML supports up to 
 
 You can also get and set the current position of the mouse, either relatively to the desktop or to a window:
 
-```
+```D
 // get the global mouse position (relatively to the desktop)
 Vector2i globalPosition = Mouse.getPosition();
 
@@ -70,7 +70,7 @@ Joysticks are identified by their index (0 to 7, since DSFML supports up to 8 jo
 
 You can check whether a joystick is connected or not:
 
-```
+```D
 if (Joystick.isConnected(0))
 {
     // joystick number 0 is connected
@@ -80,7 +80,7 @@ if (Joystick.isConnected(0))
 
 You can also get the capabilities of a connected joystick:
 
-```
+```D
 // check how many buttons joystick number 0 has
 uint buttonCount = Joystick.getButtonCount(0);
 
@@ -92,7 +92,7 @@ Joystick axes are defined in the `Joystick.Axis` enum. Since they have no specia
 
 Finally, you can of course query the state of a joystick's axes and buttons:
 
-```
+```D
 // is button 1 of joystick number 0 pressed?
 if (Joystick.isButtonPressed(0, 1))
 {

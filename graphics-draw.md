@@ -17,7 +17,7 @@ On top of that, [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/ds
 
 Here is what a typical main loop looks like with a render window:
 
-```
+```D
 import dsfml.graphics;
 
 void main()
@@ -75,7 +75,7 @@ Off-screen drawing
 
 DSFML also provides a way to draw to a texture instead of directly to a window. To do so, use a [RenderTexture](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rendertexture.d) instead of a [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d). It has the same functions for drawing, inherited from their common base [RenderTarget](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rendertarget.d).
 
-```
+```D
 // create a 500x500 render-texture
 RenderTexture renderTexture = new RenderTexture();
 if (!renderTexture.create(500, 500))
@@ -100,7 +100,7 @@ The `getTexture` function returns a read-only texture, which means that you can 
 
 [RenderTexture](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rendertexture.d) also has the same functions as [RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d) for handling views and OpenGL (see the corresponding tutorials for more details). If you use OpenGL to draw to the render-texture, you can have a depth buffer by using the third optional argument of the create function.
 
-```
+```D
 renderTexture.create(500, 500, true); // enable depth buffer
 ```
 

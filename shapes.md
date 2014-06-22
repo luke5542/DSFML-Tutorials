@@ -19,7 +19,7 @@ Color
 
 One of the most basic property of a shape is its color, that you can change with the `setFillColor` function.
 
-```
+```D
 auto shape = new CircleShape(50);
 
 // set the shape color to green
@@ -33,7 +33,7 @@ Outline
 
 Shapes can have an outline. You can select the thickness and color of the outline with the `setOutlineThickness` and `setOutlineColor` functions.
 
-```
+```D
 auto shape = new CircleShape(50);
 shape.fillColor = new Color(100, 250, 50);
 
@@ -53,7 +53,7 @@ Texture
 
 Shapes can also be textured, like sprites. To specify which part of the texture must be mapped to the shape, you must specify the texture rectangle with the `textureRect` property. It takes the texture rectangle to map to the bounding rectangle of the shape. This method doesn't offer maximum flexibility, but it is much easier to use than individually setting the texture coordinates of each point of the shape.
 
-```
+```D
 CircleShape shape = new CircleShape(50);
 
 // map a 100x100 textured rectangle to the shape
@@ -72,7 +72,7 @@ Drawing a shape
 
 Drawing a shape is as simple as drawing any other DSFML entity:
 
-```
+```D
 window.draw(shape);
 ```
 
@@ -84,7 +84,7 @@ Rectangles
 
 To draw rectangles, you must use the [RectangleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rectangleshape.d) class. It has only one attribute: the size of the rectangle.
 
-```
+```D
 // define a 120x50 rectangle
 RectangleShape rectangle = new RectangleShape(new Vector2f(120, 50));
 
@@ -99,7 +99,7 @@ Circles
 
 Circles are represented by the [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) class. It has two attributes: the radius and the number of sides. The number of sides is an optional attribute, it allows you to adjust the "quality" of the circle: circles have to be simulated by polygons with many sides (the graphics card is unable to draw a perfect circle directly), and this attribute defines how many sides your circle will have. If you draw small circles, you'll probably need only a few sides. If you draw big circles, or zoom on regular circles, you'll most likely need more sides.
 
-```
+```D
 // define a circle with radius = 200
 CircleShape circle = new CircleShape(200);
 
@@ -117,7 +117,7 @@ Regular polygons
 
 There's no dedicated class for regular polygons, in fact you can get a regular polygon of any number of sides with the [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) class: indeed, since circles are simulated by polygons with many sides, you just have to play with the number of sides to get the desired polygons. A [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) with 3 points is a triangle, with 4 points it's a square, etc.
 
-```
+```D
 // define a triangle
 CircleShape triangle = new CircleShape(80, 3);
 
@@ -137,7 +137,7 @@ The [ConvexShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/
 
 To define a convex shape, you must first set the total number of points, and then define these points.
 
-```
+```D
 // create an empty shape
 ConvexShape convex = new ConvexShape();
 
@@ -165,7 +165,7 @@ There's no shape class for lines. The reason is simple: if your line has a thick
 
 Line with thickness:
 
-```
+```D
 RectangleShape line = new RectangleShape(new Vector2f(150, 5));
 line.rotate(45);
 ```
@@ -174,7 +174,7 @@ line.rotate(45);
 
 Line without thickness:
 
-```
+```D
 Vertex[2] line =
 [
     new Vertex(new Vector2f(10, 10)),
@@ -200,7 +200,7 @@ You must also call the `update` protected function whenever the points of your s
 
 Here is a complete example of a custom shape class: EllipseShape.
 
-```
+```D
 class EllipseShape : Shape
 {
 
