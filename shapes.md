@@ -255,7 +255,7 @@ Antialiased Shapes
 
 There's no option to antialias a single shape. If you want to get antialiased shapes (ie. shapes with smooth edges), you must enable antialiasing globally when you create the window, with the corresponding attribute of the [ContextSettings](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/contextsettings.d) structure.
 
-```
+```D
 ContextSettings settings = new ContextSettings();
 settings.antialiasingLevel = 8;
 
