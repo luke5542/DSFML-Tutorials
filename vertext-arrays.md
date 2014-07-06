@@ -95,6 +95,7 @@ Primitive types
 Let's stop for a while, and see which primitives you can create with vertices. As explained above, you can define the most basic 2D primitives: point, line, triangle and quad (actually, this one exists for convenience, internally the graphics card breaks it into two triangles). There are also "chained" variants of these primitive types, that allow to share vertices between two adjacent primitives -- which is really useful because primitives are often connected.
 
 Let's have a look at the full list:
+
 | Primitive Type | Description | Example |
 | --- | --- | --- |
 | Points | A set of unconnected points. These points have no thickness: they will always take one pixel, regardless of the current transform and view. | ![The Points primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-points.png) |
