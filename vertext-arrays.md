@@ -101,8 +101,8 @@ Let's have a look at the full list:
 | Points | A set of unconnected points. These points have no thickness: they will always take one pixel, regardless of the current transform and view. | ![The Points primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-points.png) |
 | Lines | A set of unconnected lines. These lines have no thickness: they will always be one pixel wide, regardless of the current transform and view. | ![The Lines primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-lines.png) |
 | LinesStrip | A set of connected lines. The end vertex of one line is used as the start vertex of the next one. | ![The LinesStrip primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-lines-strip.png) |
-| Triangles | A set of unconnected triangles. | ![The Triangles primitive type]() |
-| TrianglesStrip | A set of connected triangles. Each triangle shares its two last vertices with the next one. | ![The TrianglesStrip primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-triangles.png) |
+| Triangles | A set of unconnected triangles. | ![The Triangles primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-triangles.png) |
+| TrianglesStrip | A set of connected triangles. Each triangle shares its two last vertices with the next one. | ![The TrianglesStrip primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-triangles-strip.png) |
 | TrianglesFan | A set of triangles connected to a central point. The first vertex is the center, then each new vertex defines a new triangle, using the center and the next vertex. | ![The TrianglesFan primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-triangles-fan.png) |
 | Quads | A set of unconnected quads. The 4 points of each quad must be defined either in clockwise or counterclockwise order. | ![The Quads primitive type](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-quads.png) |
 
