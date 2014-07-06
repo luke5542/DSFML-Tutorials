@@ -435,6 +435,7 @@ struct Particle
 
 And the little demo that uses it:
 
+```D
 void main()
 {
     // create the window
@@ -472,5 +473,6 @@ void main()
     }
 
 }
+```
 
 ![The Particles Example](http://www.sfml-dev.org/tutorials/2.0/images/graphics-vertex-array-particles.png "The Particles Example")
