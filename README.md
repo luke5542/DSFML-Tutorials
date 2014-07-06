@@ -1,7 +1,7 @@
 DSFML-Tutorials
 =====
 
-A series of tutorials for DSFML, based upon Laurent's tutorials for [SFML](http://www.sfml-dev.org/tutorials/2.0/). Changes have been made only where necessary to work with D and DSFML, instead of C++ and SFML.
+A series of tutorials for DSFML, based upon Laurent's tutorials for [SFML](http://www.sfml-dev.org/tutorials/2.0/). All content seen here should be credited to Laurent's original work. Changes have been made only where necessary to work with D and DSFML, instead of C++ and SFML.
 
 
 System Module
