@@ -8,8 +8,6 @@ All SFML classes (sprites, text, shapes) use the same interface for transformati
 
 [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) defines four properties: position, rotation, scale and origin; they are standard D `@property` fields. These transformation components are all independent from each other: if you want to change the orientation of the entity, you just have to set its rotation property, you don't have to care about the current position and scale.
 
-Another note about [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) that's specific to DSFML: all of the built-in transformable types (i.e. Sprite, Text, etc) use a `NormalTransformable` mixin that provides a standard implementation for classes that wish to implement the `Transformable` interface.
-
 Position
 --
 
@@ -99,140 +97,163 @@ Vector2f origin = entity.origin; // = (10, 20)
 Note that changing the origin also changes the visual position of the entity, although its position property is still the same. If you don't understand why, read this tutorial one more time!
 
 Transforming your own classes
+---
 
-sf::Transformable is not only made for SFML classes, it can also be a base (or member) of you own classes.
+[Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) is not only made for DSFML classes, it can also be a base (or member) of you own classes. On thing to mention, first, that's specific to DSFML: all of the built-in transformable types (i.e. Sprite, Text, etc) use a `NormalTransformable` mixin that provides a standard implementation for classes that wish to implement the `Transformable` interface. If you wish to maintain identical functionality in your own DSFML classes, you should do the same:
 
-class MyGraphicalEntity : public sf::Transformable
+```D
+class MyGraphicalEntity : Transformable
 {
+    mixin NormalTransformable;
     // ...
-};
+}
 
-MyGraphicalEntity entity;
-entity.setPosition(10, 30);
-entity.setRotation(110);
-entity.setScale(0.5f, 0.2f);
-To make use of the final transform of the entity (most likely to draw it), call the getTransform function. This function returns a sf::Transform; see below for more explanations about it, and how to use it to transform an SFML entity.
+auto entity = new MyGraphicalEntity(...);
+entity.position = Vector2f(10, 30);
+entity.rotation = 110;
+entity.scale = Vector2f(0.5f, 0.2f);
+```
 
-If you don't need/want the complete set of functions provided by the sf::Transformable interface, don't hesitate to use it as a member instead, and to provide your own functions on top of it. It is not abstract so there's no problem to instanciate it instead of using it as a base class.
+To make use of the final transform of the entity (most likely to draw it), call the `getTransform()` function. This function returns a [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d); see below for more explanations about it, and how to use it to transform a DSFML entity.
 
 Custom transforms
+---
 
-The sf::Transformable class is easy to use, but it is also limited. Some users need more power, they need to specify a final transformation as a custom combination of individual transformations. For this kind of users, a lower-level class is available: sf::Transform. It is nothing more than a 3x3 matrix, so it can represent any transformation in the 2D spaaaaaace.
+The [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) interface is easy to use, but it is also limited. Some users need more power, they need to specify a final transformation as a custom combination of individual transformations. For this kind of users, a lower-level class is available: [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d). It is nothing more than a 3x3 matrix, so it can represent any transformation in the 2D space.
 
-There are many ways to construct a sf::Transform:
+There are many ways to construct a [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d):
 
-by using the predefined functions for the most common transformations (translation, rotation, scale)
-by combining two transforms
-by specifying its 9 elements directly
+* by using the predefined functions for the most common transformations (translation, rotation, scale)
+* by combining two transforms
+* by specifying its 9 elements directly
+
 Here are a few examples:
 
+```D
 // the identity transform (does nothing)
-sf::Transform t1 = sf::Transform::Identity;
+auto t1 = Transform.Identity;
 
 // a rotation transform
-sf::Transform t2;
+Transform t2;
 t2.rotate(45);
 
 // a custom matrix
-sf::Transform t3(2, 0, 20,
-                 0, 1, 50,
-                 0, 0, 1);
+auto t3 = Transform(2, 0, 20,
+                    0, 1, 50,
+                    0, 0, 1);
 
 // a combined transform
-sf::Transform t4 = t1 * t2 * t3;
+auto t4 = t1 * t2 * t3;
+```
+
 You can of course apply several predefined transformations to the same transform, they will all be combined sequentially:
 
-sf::Transform t;
+```D
+Transform t;
 t.translate(10, 100);
 t.rotate(90);
 t.translate(-10, 50);
 t.scale(0.5f, 0.75f);
+```
+
 Back to the point: how can a custom transform be applied to a graphical entity? It's easy: pass it to the draw function.
 
+```D
 window.draw(entity, transform);
+```
+
 ... which is in fact a shortcut for:
 
-sf::RenderStates states;
+```D
+RenderStates states;
 states.transform = transform;
 window.draw(entity, states);
-If your entity is a sf::Transformable (sprite, text, shape), with its own internal transform, then both are combined to produce the final transform.
+```
+
+If your entity is a [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) (sprite, text, shape), with its own internal transform, then both are combined to produce the final transform.
 
 Bounding boxes
+---
 
 After transforming entities and drawing them, maybe you'd like to do some calculations with them, like checking collisions.
 
-SFML entities can give you their bounding box. The bounding box is the minimal rectangle that contains the entity, with sides aligned on the X and Y axes.
+DSFML entities can give you their bounding box. The bounding box is the minimal rectangle that contains the entity, with sides aligned on the X and Y axes.
 
-Bounding box of entities
+![Bounding Box of Entities](http://sfml-dev.org/tutorials/2.1/images/graphics-transform-bounds.png "Bounding Box of Entities")
+
 The bounding box is very useful to implement collision detection: it is very fast to check against a point or another axis-aligned rectangle, and it is close enough to the real entity to provide a good approximation.
 
+```D
 // get the bounding box of the entity
-sf::FloatRect boundingBox = entity.getGlobalBounds();
+FloatRect boundingBox = entity.getGlobalBounds();
 
 // check collision with a point
-sf::Vector2f point = ...;
+Vector2f point = ...;
 if (boundingBox.contains(point))
 {
     // collision!
 }
 
 // check collision with another box (like the bounding box of another entity)
-sf::FloatRect otherBox = ...;
+FloatRect otherBox = ...;
 if (boundingBox.intersects(otherBox))
 {
     // collision!
 }
-The function is named getGlobalBounds because it returns the bounding box of the entity in the global coordinates system, ie. with all its transformations (position, rotation, scale) applied.
+```
 
-There's another function that returns the bounding box of the entity in its local coordinates system (without transformations applied): getLocalBounds. This function can be used to get the initial size of an entity, for example, or to perform more specific calculations.
+The function is named `getGlobalBounds()` because it returns the bounding box of the entity in the global coordinates system, ie. with all its transformations (position, rotation, scale) applied.
+
+There's another function that returns the bounding box of the entity in its local coordinates system (without transformations applied): `getLocalBounds()`. This function can be used to get the initial size of an entity, for example, or to perform more specific calculations.
 
 Object hierarchies (scene graph)
+---
 
 With the custom transforms seen previously, it's now easy to implement a hierarchy of objects, where children are transformed relatively to their parent. All you have to do is to pass the combined transform from parent to children when you draw them, until you reach the final drawable entities (sprites, texts, shapes, vertex arrays or your own drawables).
 
+```D
 // the abstract base class
 class Node
 {
-public:
 
     // ... functions to transform the node
 
     // ... functions to manage the node's children
 
-    void draw(sf::RenderTarget& target, const sf::Transform& parentTransform) const
+    void draw(RenderTarget target, Transform parentTransform)
     {
         // combine the parent transform with the node's one
-        sf::Transform combinedTransform = parentTransform * m_transform;
+        Transform combinedTransform = parentTransform * m_transform;
 
         // let the node draw itself
         onDraw(target, combinedTransform)
 
         // draw its children
-        for (std::size_t i = 0; i < m_children.size(); ++i)
-            m_children[i]->draw(target, combinedTransform);
+        foreach (child; m_children)
+            child.draw(target, combinedTransform);
     }
 
 private:
 
-    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const = 0;
+    void onDraw(ref RenderTarget target, Transform transform);
 
-    sf::Transform m_transform;
-    std::vector<Node*> m_children;
-};
+    Transform m_transform;
+    Node[] m_children;
+}
 
 // a simple derived class: a node that draws a sprite
-class SpriteNode : public Node
+class SpriteNode : Node
 {
-public:
 
     // .. functions to define the sprite
 
 private:
 
-    virtual void onDraw(sf::RenderTarget& target, const sf::Transform& transform) const
+    void onDraw(RenderTarget target, Transform transform)
     {
         target.draw(m_sprite, transform);
     }
 
-    sf::Sprite m_sprite;
-};
+    Sprite m_sprite;
+}
+```
