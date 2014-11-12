@@ -235,7 +235,7 @@ class Node
 
 private:
 
-    void onDraw(ref RenderTarget target, Transform transform);
+    void onDraw(RenderTarget target, Transform transform);
 
     Transform m_transform;
     Node[] m_children;
