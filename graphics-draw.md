@@ -23,7 +23,7 @@ import dsfml.graphics;
 void main()
 {
     // create the window
-    auto window = RenderWindow(VideoMode(800, 600), "My window");
+    auto window = new RenderWindow(VideoMode(800, 600), "My window");
 
     // run the program as long as the window is open
     while (window.isOpen())
