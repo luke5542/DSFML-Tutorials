@@ -23,7 +23,7 @@ One of the most basic property of a shape is its color, that you can change with
 auto shape = new CircleShape(50);
 
 // set the shape color to green
-shape.fillColor = new Color(100, 250, 50);
+shape.fillColor = Color(100, 250, 50);
 ```
 
 ![A Colored Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-color.png "A Colored Shape")
@@ -35,11 +35,11 @@ Shapes can have an outline. You can select the thickness and color of the outlin
 
 ```D
 auto shape = new CircleShape(50);
-shape.fillColor = new Color(100, 250, 50);
+shape.fillColor = Color(100, 250, 50);
 
 // set a 10-pixel wide orange outline
 shape.outlineThickness = 10;
-shape.outlineColor = new Color(250, 150, 100);
+shape.outlineColor = Color(250, 150, 100);
 ```
 
 ![An Outlined Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-color.png "An Outlined Shape")
@@ -58,7 +58,7 @@ CircleShape shape = new CircleShape(50);
 
 // map a 100x100 textured rectangle to the shape
 shape.setTexture(texture); // texture is a Texture
-shape.textureRect = new IntRect(10, 10, 100, 100);
+shape.textureRect = IntRect(10, 10, 100, 100);
 ```
 
 ![A Textured Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-texture.png "A Textured Shape")
@@ -89,7 +89,7 @@ To draw rectangles, you must use the [RectangleShape](https://github.com/Jebbs/D
 RectangleShape rectangle = new RectangleShape(new Vector2f(120, 50));
 
 // change the size to 100x100
-rectangle.size = new Vector2f(100, 100);
+rectangle.size = Vector2f(100, 100);
 ```
 
 ![A Rectangle Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-rectangle.png "A Rectangle Shape")
@@ -122,7 +122,7 @@ There's no dedicated class for regular polygons, in fact you can get a regular p
 CircleShape triangle = new CircleShape(80, 3);
 
 // define a square
-CircleShape square = CircleShape(80, 4);
+CircleShape square = new CircleShape(80, 4);
 
 // define an octagon
 CircleShape octagon = new CircleShape(80, 8);
@@ -166,7 +166,7 @@ There's no shape class for lines. The reason is simple: if your line has a thick
 Line with thickness:
 
 ```D
-RectangleShape line = new RectangleShape(new Vector2f(150, 5));
+RectangleShape line = new RectangleShape(Vector2f(150, 5));
 line.rotate(45);
 ```
 
@@ -177,8 +177,8 @@ Line without thickness:
 ```D
 Vertex[2] line =
 [
-    new Vertex(new Vector2f(10, 10)),
-    new Vertex(new Vector2f(150, 150))
+    Vertex(Vector2f(10, 10)),
+    Vertex(Vector2f(150, 150))
 ];
 
 window.draw(line, 2, PrimitiveType.Lines);
