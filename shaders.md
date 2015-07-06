@@ -33,7 +33,7 @@ Any attempt to use the [Shader](https://github.com/Jebbs/DSFML/blob/master/src/d
 The most common way of loading a shader is from a file on disk, which is done with the loadFromFile function.
 
 ```D
-Shader shader;
+Shader shader = new Shader();
 
 // load only the vertex shader
 if (!shader.loadFromFile("vertex_shader.vert", Shader.Type.Vertex))
@@ -61,13 +61,13 @@ The `loadFromFile()` function can sometimes fail with no obvious reason. First, 
 Shaders can also be loaded directly from strings, with the `loadFromMemory()` function. This can be useful if you want to embed the shader source directly into your program.
 
 ```D
-const string vertexShader =
+string vertexShader =
 `void main()
 {
     ...
 }`;
 
-const string fragmentShader =
+string fragmentShader =
 `void main()
 {
     ...
@@ -99,10 +99,12 @@ If loading fails, don't forget to check the standard error output (the console) 
 Using a shader
 ---
 
-Using a shader is simple, just pass it as an additional argument to the `draw()` function.
+Using a shader is simple, just pass it as an additional argument to the `draw()` function, via the field in [RenderStates](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderstates.d).
 
 ```D
-window.draw(whatever, &shader);
+RenderStates states = RenderStates.Default;
+states.shader = myShader;
+window.draw(whatever, states);
 ```
 
 Passing variables to a shader
@@ -122,7 +124,7 @@ void main()
 Uniforms can be set by the D program, using the various overloads of the `setParameter()` function in the [Shader](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shader.d) class.
 
 ```D
-shader.setParameter("myvar", 5.f);
+shader.setParameter("myvar", 5.0);
 ```
 
 `setParameter()`'s overloads support all the types provided by DSFML:
