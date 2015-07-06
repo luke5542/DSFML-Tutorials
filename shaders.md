@@ -62,16 +62,16 @@ Shaders can also be loaded directly from strings, with the `loadFromMemory()` fu
 
 ```D
 string vertexShader =
-`void main()
+r"void main()
 {
     ...
-}`;
+}";
 
 string fragmentShader =
-`void main()
+r"void main()
 {
     ...
-}`;
+}";
 
 // load only the vertex shader
 if (!shader.loadFromMemory(vertexShader, Shader.Type.Vertex))
