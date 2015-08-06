@@ -17,56 +17,56 @@ The class which encapsulates views in DSFML is [View](https://github.com/Jebbs/D
 
 ```D
 // create a view with the rectangular area of the 2D world to show
-sf::View view1(sf::FloatRect(200, 200, 300, 200));
+View view1 = new View(FloatRect(200, 200, 300, 200));
 
 // create a view with its center and size
-sf::View view2(sf::Vector2f(350, 300), sf::Vector2f(300, 200));
+View view2 = new View(Vector2f(350, 300), Vector2f(300, 200));
 ```
 
 These two definitions are equivalent: Both views will show the same area of the 2D world, a 300x200 rectangle centered on the point (350, 300).
 
-A view **IMAGE**
+![A View](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-initial.png "A View")
 
 If you don't want to define the view upon construction or want to modify it later, you can use the equivalent setters:
 
 ```D
-sf::View view1;
-view1.reset(sf::FloatRect(200, 200, 300, 200));
+View view1 = new View();
+view1.reset(FloatRect(200, 200, 300, 200));
 
-sf::View view2;
-view2.setCenter(sf::Vector2f(350, 300));
-view2.setSize(sf::Vector2f(200, 200));
+View view2 = new View();
+view2.center = Vector2f(350, 300);
+view2.size = Vector2f(200, 200);
 ```
 
 Once your view is defined, you can transform it to make it show a translated/rotated/scaled version of your 2D world.
 
 **Moving (Scrolling) the View**
 
-Unlike drawable entities, such as sprites or shapes whose positions are defined by their top-left corner (and can be changed to any other point), views are always manipulated by their center -- this is simply more convenient. That's why the function to change the position of a view is named setCenter, and not setPosition.
+Unlike drawable entities, such as sprites or shapes whose positions are defined by their top-left corner (and can be changed to any other point), views are always manipulated by their center -- this is simply more convenient. That's why the property to change the position of a view is named center, and not position.
 
 ```D
 // move the view at point (200, 200)
-view.setCenter(200, 200);
+view.center = Vector2f(200, 200);
 
 // move the view by an offset of (100, 100) (so its final position is (300, 300))
-view.move(100, 100);
+view.move(Vector2f(100, 100));
 ```
 
-A translated view **IMAGE**
+![A Translated View](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-translated.png "A Translated View")
 
 **Rotating the View**
 
-To rotate a view, use the `setRotation()` method.
+To rotate a view, use the `rotation` property.
 
 ```D
 // rotate the view at 20 degrees
-view.setRotation(20);
+view.rotation = 20;
 
 // rotate the view by 5 degrees relatively to its current orientation (so its final orientation is 25 degrees)
-view.rotate(5);
+view.rotation = view.rotation + 5;
 ```
 
-A rotated view **IMAGE**
+![A Rotated View](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-rotated.png "A Rotated View")
 
 **Zooming (Scaling) the View**
 
@@ -74,13 +74,13 @@ Zooming in (or out) a view is done through to resizing it, so the function to us
 
 ```D
 // resize the view to show a 1200x800 area (we see a bigger area, so this is a zoom out)
-view.setSize(1200, 800);
+view.size = Vector2f(1200, 800);
 
 // zoom the view relatively to its current size (apply a factor 0.5, so its final size is 600x400)
 view.zoom(0.5f);
 ```
 
-A scaled view **IMAGE**
+![A Scaled View](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-scaled.png "A Scaled View")
 
 Defining How the View is Viewed
 ---
@@ -89,13 +89,13 @@ Now that you've defined which part of the 2D world is seen in the window, let's 
 
 This default behavior is suitable for most situations, but it might need to be changed sometimes. For example, to split the screen in a multiplayer game, you may want to use two views which each only occupy half of the window. You can also implement a minimap by drawing your entire world to a view which is rendered in a small area in a corner of the window. The area in which the contents of the view is shown is called the viewport.
 
-To set the viewport of a view, you can use the `setViewport()` method.
+To set the viewport of a view, you can use the `viewport` property.
 
 ```D
 // define a centered viewport, with half the size of the window
-view.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
+view.viewport = FloatRect(0.25f, 0.25, 0.5f, 0.5f);
 ```
-A viewport **IMAGE**
+![A Viewport](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-viewport.png "A Viewport")
 
 You might have noticed something very important: The viewport is not defined in pixels, but instead as a ratio of the window size. This is more convenient: it allows you to not have to track resize events in order to update the size of the viewport every time the size of the window changes. It is also more intuitive: you would probably define your viewport as a fraction of the entire window area anyway, not as a fixed-size rectangle.
 
@@ -103,43 +103,43 @@ Using a viewport, it is straightforward to split the screen for multiplayer game
 
 ```D
 // player 1 (left side of the screen)
-player1View.setViewport(sf::FloatRect(0, 0, 0.5f, 1));
+player1View.viewport = FloatRect(0, 0, 0.5f, 1);
 
 // player 2 (right side of the screen)
-player2View.setViewport(sf::FloatRect(0.5f, 0, 0.5f, 1));
+player2View.viewport = FloatRect(0.5f, 0, 0.5f, 1);
 ```
 
-A split screen **IMAGE**
+![A Split Screen](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-split-screen.png "A Split Screen")
 
 ... or a mini-map:
 
 ```D
 // the game view (full window)
-gameView.setViewport(sf::FloatRect(0, 0, 1, 1));
+gameView.viewport = FloatRect(0, 0, 1, 1);
 
 // mini-map (upper-right corner)
-minimapView.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+minimapView.viewport = FloatRect(0.75f, 0, 0.25f, 0.25f);
 ```
 
-A minimap **IMAGE**
+![A Minimap](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-minimap.png "A Minimap")
 
 Using a View
 ---
 
-To draw something using a view, you must draw it after calling the `setView()` method of the target to which you are drawing ([RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d) or [RenderTexture](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rendertexture.d)).
+To draw something using a view, you must draw it after setting the `view` property of the target to which you are drawing ([RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d) or [RenderTexture](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rendertexture.d)).
 
 ```D
 // let's define a view
-sf::View view(sf::FloatRect(0, 0, 1000, 600));
+View view = new View(FloatRect(0, 0, 1000, 600));
 
 // activate it
-window.setView(view);
+window.view = view;
 
 // draw something to that view
 window.draw(some_sprite);
 
 // want to do visibility checks? retrieve the view
-sf::View currentView = window.getView();
+View currentView = window.view;
 ...
 ```
 
@@ -147,15 +147,15 @@ The view remains active until you set another one. This means that there is alwa
 
 ```D
 // create a view half the size of the default view
-sf::View view = window.getDefaultView();
+View view = window.getDefaultView();
 view.zoom(0.5f);
-window.setView(view);
+window.view = view;
 
 // restore the default view
 window.setView(window.getDefaultView());
 ```
 
-> When you call `setView()`, the render-target makes a copy of the view, and doesn't store a pointer to the one that is passed. This means that whenever you update your view, you need to call `setView()` again to apply the modifications. Don't be afraid to copy views or create them on the fly, they aren't expensive objects (they just hold a few floats).
+> When you use the `view` property, the render-target makes a copy of the view, and doesn't store a pointer to the one that is passed. This means that whenever you update your view, you need to set `view` again to apply the modifications. Don't be afraid to copy views or create them on the fly, they aren't expensive objects (they just hold a few floats).
 
 Showing More When the Window is Resized
 ---
@@ -166,17 +166,17 @@ If, instead of this default behavior, you'd like to show more/less stuff dependi
 
 ```D
 // the event loop
-sf::Event event;
+Event event;
 while (window.pollEvent(event))
 {
     ...
 
     // catch the resize events
-    if (event.type == sf::Event::Resized)
+    if (event.type == Event.EventType.Resized)
     {
         // update the view to the new size of the window
-        sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
-        window.setView(sf::View(visibleArea));
+        FloatRect visibleArea = FloatRect(0, 0, event.size.width, event.size.height);
+        window.view = new View(visibleArea);
     }
 }
 ```
@@ -188,10 +188,10 @@ When you use a custom view, or when you resize the window without using the code
 
 ```D
 // get the current mouse position in the window
-sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+Vector2i pixelPos = Mouse.getPosition(window);
 
 // convert it to world coordinates
-sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+Vector2f worldPos = window.mapPixelToCoords(pixelPos);
 ```
 
 By default, `mapPixelToCoords()` uses the current view. If you want to convert the coordinates using view which is not the active one, you can pass it as an additional argument to the function.
