@@ -27,3 +27,4 @@ Graphics Module
 * [Designing Your own Entities with Vertex Arrays](https://github.com/luke5542/DSFML-Tutorials/blob/master/vertex-arrays.md)
 * [Position, Rotation, Scale: Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md)
 * [Adding Special Effects with Shaders](https://github.com/luke5542/DSFML-Tutorials/blob/master/shaders.md)
+* [Controlling the 2D Camera with Views](https://github.com/luke5542/DSFML-Tutorials/blob/master/cameraviews.md)
