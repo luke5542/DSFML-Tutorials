@@ -147,12 +147,12 @@ The view remains active until you set another one. This means that there is alwa
 
 ```D
 // create a view half the size of the default view
-View view = window.getDefaultView();
+View view = window.getDefaultView().dup;
 view.zoom(0.5f);
 window.view = view;
 
 // restore the default view
-window.setView(window.getDefaultView());
+window.view = window.getDefaultView();
 ```
 
 > When you use the `view` property, the render-target makes a copy of the view, and doesn't store a pointer to the one that is passed. This means that whenever you update your view, you need to set `view` again to apply the modifications. Don't be afraid to copy views or create them on the fly, they aren't expensive objects (they just hold a few floats).
