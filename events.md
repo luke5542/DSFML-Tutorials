@@ -21,10 +21,10 @@ Event event;
 while(window.pollEvent(event))
 {
 
-	// check the type of the event
+    // check the type of the event
     switch(event.type)
     {
-    	// window closed
+        // window closed
         case Event.EventType.Closed:
             window.close();
             break;
@@ -34,7 +34,7 @@ while(window.pollEvent(event))
             ...
             break;
 
-		// we don't process other types of events
+        // we don't process other types of events
         default:
             break;
     }
@@ -43,7 +43,7 @@ while(window.pollEvent(event))
 
 > Read the above paragraph once again and make sure that it's printed in your head, the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union causes too many problems to inadvertent programmers.
 
-Alright, now we can see what events DSFML supports, what they mean and how to use them properly. 
+Alright, now we can see what events DSFML supports, what they mean and how to use them properly.
 
 The Closed Event
 ---
@@ -146,7 +146,7 @@ if (event.type == Event.EventType.KeyPressed)
 Note that some keys have a special meaning for the OS, and will produce unexpected behaviours. An exemple is the F10 key on Windows, which "steals" the focus, or the F12 key which starts the debugger when using Visual Studio. This will probably be solved in a future version of DSFML.
 
 The MouseWheelMoved Event
---- 
+---
 
 The `Event.EventType.MouseWheelMoved` event is triggered when the mouse wheel moves up or down.
 

@@ -17,9 +17,9 @@ Ok, that was short but if you really don't understand what sprites and textures 
 Loading a Texture
 ---
 
-So, before creating any sprite, we need a valid texture. The class that encapsulates textures in SFML is, surprisingly, Texture. Since the (only) role of a texture is to be loaded and mapped to graphical entities, almost all its functions are about loading and updating it.
+So, before creating any sprite, we need a valid texture. The class that encapsulates textures in DSFML is, surprisingly, Texture. Since the (only) role of a texture is to be loaded and mapped to graphical entities, almost all its functions are about loading and updating it.
 
-The most common way of loading a texture is from an image file on disk, which is done with the loadFromFile function.
+The most common way of loading a texture is from an image file on disk, which is done with the `loadFromFile()` method.
 
 ```D
 Texture texture = new Texture();
@@ -112,7 +112,7 @@ Yes, you can now create your sprite.
 Sprite sprite = new Sprite();
 sprite.setTexture(texture);
 
-... and finally draw it.
+// ... and finally draw it.
 
 // inside the main loop, between window.clear() and window.display()
 window.draw(sprite);
