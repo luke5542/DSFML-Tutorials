@@ -17,7 +17,7 @@ This tutorial will only focus on the DSFML specific part: Loading and applying y
 Loading shaders
 ---
 
-In DSFML, shaders are represented by the [Shader](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shader.d) class. It handles both the vertex and fragment shaders: A [Shader](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shader.d) object is a combination of both (or only one, if the other is not provided).
+In DSFML, shaders are represented by the [Shader](http://dsfml.com/dsfml/graphics/shader.html) class. It handles both the vertex and fragment shaders: A [Shader](http://dsfml.com/dsfml/graphics/shader.html) object is a combination of both (or only one, if the other is not provided).
 
 Even though shaders have become commonplace, there are still old graphics cards that might not support them. The first thing you should do in your program is check if shaders are available on the system:
 
@@ -28,9 +28,9 @@ if (!Shader.isAvailable())
 }
 ```
 
-Any attempt to use the [Shader](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shader.d) class will fail if `Shader.isAvailable()` returns false.
+Any attempt to use the [Shader](http://dsfml.com/dsfml/graphics/shader.html) class will fail if `Shader.isAvailable()` returns false.
 
-The most common way of loading a shader is from a file on disk, which is done with the loadFromFile function.
+The most common way of loading a shader is from a file on disk, which is done with the `loadFromFile()` function.
 
 ```D
 Shader shader = new Shader();
@@ -99,7 +99,7 @@ If loading fails, don't forget to check the standard error output (the console) 
 Using a shader
 ---
 
-Using a shader is simple, just pass it as an additional argument to the `draw()` function, via the field in [RenderStates](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderstates.d).
+Using a shader is simple, just pass it as an additional argument to the `draw()` function, via the field in [RenderStates](http://dsfml.com/dsfml/graphics/renderstates.html).
 
 ```D
 RenderStates states = RenderStates.Default;
@@ -121,7 +121,7 @@ void main()
 }
 ```
 
-Uniforms can be set by the D program, using the various overloads of the `setParameter()` function in the [Shader](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shader.d) class.
+Uniforms can be set by the D program, using the various overloads of the `setParameter()` function in the [Shader](http://dsfml.com/dsfml/graphics/shader.html) class.
 
 ```D
 shader.setParameter("myvar", 5.0);
@@ -130,23 +130,23 @@ shader.setParameter("myvar", 5.0);
 `setParameter()`'s overloads support all the types provided by DSFML:
 
 + float (GLSL type float)
-+ 2 floats, [Vector2f](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/vector2.d) (GLSL type vec2)
-+ 3 floats, [Vector3f](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/system/vector3.d) (GLSL type vec3)
++ 2 floats, [Vector2f](http://dsfml.com/dsfml/system/vector2.html) (GLSL type vec2)
++ 3 floats, [Vector3f](http://dsfml.com/dsfml/system/vector3.html) (GLSL type vec3)
 + 4 floats (GLSL type vec4)
-+ [Color](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/color.d) (GLSL type vec4)
-+ [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d) (GLSL type mat4)
-+ [Texture](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/texture.d) (GLSL type sampler2D)
++ [Color](http://dsfml.com/dsfml/graphics/color.html) (GLSL type vec4)
++ [Transform](http://dsfml.com/dsfml/graphics/transform.html) (GLSL type mat4)
++ [Texture](http://dsfml.com/dsfml/graphics/texture.html) (GLSL type sampler2D)
 
-> The GLSL compiler optimizes out unused variables (here, "unused" means "not involved in the calculation of the final vertex/pixel"). So don't be surprised if you get error messages such as Failed to find variable "xxx" in shader when you call setParameter during your tests.
+> The GLSL compiler optimizes out unused variables (here, "unused" means "not involved in the calculation of the final vertex/pixel"). So don't be surprised if you get error messages such as Failed to find variable "xxx" in shader when you call `setParameter()` during your tests.
 
 Minimal shaders
 ---
 
 You won't learn how to write GLSL shaders here, but it is essential that you know what input SFML provides to the shaders and what it expects you to do with it.
 
-__Vertex shader__
+### Vertex shader
 
-DSFML has a fixed vertex format which is described by the [Vertex](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/vertex.d) structure. A DSFML vertex contains a 2D position, a color, and 2D texture coordinates. This is the exact input that you will get in the vertex shader, stored in the built-in `gl_Vertex`, `gl_MultiTexCoord0` and `gl_Color` variables (you don't need to declare them).
+DSFML has a fixed vertex format which is described by the [Vertex](http://dsfml.com/dsfml/graphics/vertex.hmtl) structure. A DSFML vertex contains a 2D position, a color, and 2D texture coordinates. This is the exact input that you will get in the vertex shader, stored in the built-in `gl_Vertex`, `gl_MultiTexCoord0` and `gl_Color` variables (you don't need to declare them).
 
 ```C
 void main()
@@ -165,7 +165,7 @@ void main()
 The position usually needs to be transformed by the model-view and projection matrices, which contain the entity transform combined with the current view. The texture coordinates need to be transformed by the texture matrix (this matrix likely doesn't mean anything to you, it is just a DSFML implementation detail). And finally, the color just needs to be forwarded. Of course, you can ignore the texture coordinates and/or the color if you don't make use of them.
 All these variables will then be interpolated over the primitive by the graphics card, and passed to the fragment shader.
 
-__Fragment shader__
+### Fragment shader
 
 The fragment shader functions quite similarly: It receives the texture coordinates and the color of a generated fragment. There's no position any more, at this point the graphics card has already computed the final raster position of the fragment. However if you deal with textured entities, you'll also need the current texture.
 

@@ -4,9 +4,9 @@ Recording audio
 Recording to a sound buffer
 ---
 
-The most common use for captured audio data is for it to be saved to a sound buffer ([SoundBuffer](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundbuffer.d)) so that it can either be played or saved to a file.
+The most common use for captured audio data is for it to be saved to a sound buffer ([SoundBuffer](http://dsfml.com/dsfml/audio/soundbuffer.html)) so that it can either be played or saved to a file.
 
-This can be achieved with the very simple interface of the [SoundBufferRecorder](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundbufferrecorder.d) class:
+This can be achieved with the very simple interface of the [SoundBufferRecorder](http://dsfml.com/dsfml/audio/soundbufferrecorder.html) class:
 
 ```D
 // first check if an input audio device is available on the system
@@ -31,7 +31,7 @@ recorder.stop();
 const(SoundBuffer) buffer = recorder.getBuffer();
 ```
 
-The `SoundRecorder.isAvailable()` static method checks if audio recording is supported by the system. It if returns false, you won't be able to use the [SoundBufferRecorder](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundbufferrecorder.d) class at all.
+The `SoundRecorder.isAvailable()` static method checks if audio recording is supported by the system. It if returns false, you won't be able to use the [SoundBufferRecorder](http://dsfml.com/dsfml/audio/soundbufferrecorder.html) class at all.
 
 The start and stop functions are self-explanatory. The capture runs in its own thread, which means that you can do whatever you want between start and stop. After the end of the capture, the recorded audio data is available in a sound buffer that you can get with the `getBuffer()` method.
 
@@ -60,7 +60,7 @@ Custom recording
 
 If storing the captured data in a sound buffer is not what you want, you can write your own recorder. Doing so will allow you to process the audio data while it is captured, (almost) directly from the recording device. This way you can, for example, stream the captured audio over the network, perform real-time analysis on it, etc.
 
-To write your own recorder, you must inherit from the [SoundRecorder](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundrecorder.d) abstract base class. In fact, [SoundBufferRecorder](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundbufferrecorder.d) is just a built-in specialization of this class.
+To write your own recorder, you must inherit from the [SoundRecorder](http://dsfml.com/dsfml/audio/soundrecorder.html) abstract base class. In fact, [SoundBufferRecorder](http://dsfml.com/dsfml/audio/soundbufferrecorder.html) is just a built-in specialization of this class.
 
 You only have a single virtual function to override in your derived class: `onProcessSamples()`. It is called every time a new chunk of audio samples is captured, so this is where you implement your specific stuff.
 
@@ -99,7 +99,7 @@ class MyRecorder : SoundRecorder
 }
 ```
 
-The `isAvailable()`/`start()`/`stop()` functions are defined in the [SoundRecorder](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundrecorder.d) base, and thus inherited in every derived classes. This means that you can use any recorder class exactly the same way as the [SoundBufferRecorder](https://github.com/Jebbs/DSFML/tree/master/src/dsfml/audio/soundbufferrecorder.d) class above.
+The `isAvailable()`/`start()`/`stop()` functions are defined in the [SoundRecorder](http://dsfml.com/dsfml/audio/soundrecorder.html) base, and thus inherited in every derived classes. This means that you can use any recorder class exactly the same way as the [SoundBufferRecorder](http://dsfml.com/dsfml/audio/soundbufferrecorder.html) class above.
 
 ```D
 if (!MyRecorder.isAvailable())

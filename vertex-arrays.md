@@ -20,7 +20,7 @@ Now you understand why we always talk about vertex arrays, and not vertices alon
 A Simple Vertex Array
 ---
 
-First, let's have a look at the [Vertex](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/vertex.d) class. It's a simple container which contains three public members, and no function except constructors. These constructors allow to create vertices with only the attributes that you need -- you don't always need to color or texture your entity.
+First, let's have a look at the [Vertex](http://dsfml.com/dsfml/graphics/vertex.d) class. It's a simple container which contains three public members, and no function except constructors. These constructors allow to create vertices with only the attributes that you need -- you don't always need to color or texture your entity.
 
 ```D
 // create a new vertex
@@ -42,7 +42,7 @@ vertex.texCoords = Vector2f(100, 100);
 auto vertex = Vertex(Vector2f(10, 50), Color.Red, Vector2f(100, 100));
 ```
 
-Now, let's define a primitive. Remember, a primitive is made of several vertices, therefore we need a vertex array. DSFML provides a simple wrapper for this: [VertexArray](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/vertexarray.d). It provides the semantics of an array (with a few differences where methods are used instead), and it also stores the primitive type directly.
+Now, let's define a primitive. Remember, a primitive is made of several vertices, therefore we need a vertex array. DSFML provides a simple wrapper for this: [VertexArray](http://dsfml.com/dsfml/graphics/vertexarray.html). It provides the semantics of an array (with a few differences where methods are used instead), and it also stores the primitive type directly.
 
 ```D
 // create an array of 3 vertices that define a triangle primitive
@@ -71,7 +71,7 @@ window.draw(triangle);
 
 You can see that the vertices' color is interpolated to fill the primitive; this is a nice way to create gradients.
 
-Note that you don't have to use the [VertexArray](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/vertexarray.d) class. It's just defined for convenience, it's nothing more than a `Vertex[]` with a [PrimitiveType](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/primitivetype.d). If you need more flexibility, or a static array, you can use your own storage. You must then use the overload of the draw function which takes a pointer to the vertices, the vertex count and the primitive type.
+Note that you don't have to use the [VertexArray](http://dsfml.com/dsfml/graphics/vertexarray.html) class. It's just defined for convenience, it's nothing more than a `Vertex[]` with a [PrimitiveType](http://dsfml.com/dsfml/graphics/primitivetype.html). If you need more flexibility, or a static array, you can use your own storage. You must then use the overload of the draw function which takes a pointer to the vertices, the vertex count and the primitive type.
 
 ```D
 Vertex[] vertices;
@@ -130,7 +130,7 @@ quad[3].texCoords = Vector2f(0, 50);
 
 > Texture coordinates are defined in pixels (just like the `textureRect` of sprites and shapes). They are not normalized (between 0 and 1), as people who are used to OpenGL programming would expect.
 
-Vertex arrays are low-level entities, they only deal with geometry and do not store additional attributes like a texture. To draw a vertex array with a texture, you must pass it directly to the draw function using a [RenderStates](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderstates.d) instance:
+Vertex arrays are low-level entities, they only deal with geometry and do not store additional attributes like a texture. To draw a vertex array with a texture, you must pass it directly to the draw function using a [RenderStates](http://dsfml.com/dsfml/graphics/renderstates.html) instance:
 
 ```D
 auto vertices = VertexArray();
@@ -146,7 +146,7 @@ window.draw(vertices, states);
 Transforming a Vertex Array
 ---
 
-Transforming is similar to texturing. The transform is not stored in the vertex array, you must pass it to the draw function, again using [RenderStates](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderstates.d):
+Transforming is similar to texturing. The transform is not stored in the vertex array, you must pass it to the draw function, again using [RenderStates](http://dsfml.com/dsfml/graphics/renderstates.html):
 
 ```D
 auto vertices = VertexArray();
@@ -159,14 +159,14 @@ auto states = RenderStates(texture);
 window.draw(vertices, states);
 ```
 
-To know more about transformations and the [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d) class, you can read the [Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md) tutorial.
+To know more about transformations and the [Transform](http://dsfml.com/dsfml/graphics/transform.d) class, you can read the [Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md) tutorial.
 
 Creating a DSFML-like Entity
 ---
 
-Now that you know how to define your own textured/colored/transformed entity, wouldn't it be nice to wrap it in a DSFML-style class? Fortunately, DSFML makes this easy for you, with the [Drawable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/drawable.d) and [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) base interfaces. These two interfaces are the base of the built-in DSFML entities -- [Sprite](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/sprite.d), [Text](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/text.d) and [Shape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shape.d).
+Now that you know how to define your own textured/colored/transformed entity, wouldn't it be nice to wrap it in a DSFML-style class? Fortunately, DSFML makes this easy for you, with the [Drawable](http://dsfml.com/dsfml/graphics/drawable.html) and [Transformable](http://dsfml.com/dsfml/graphics/transformable.html) base interfaces. These two interfaces are the base of the built-in DSFML entities -- [Sprite](http://dsfml.com/dsfml/graphics/sprite.hmtl), [Text](http://dsfml.com/dsfml/graphics/text.html) and [Shape](http://dsfml.com/dsfml/graphics/shape.html).
 
-[Drawable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/drawable.d) only declares one virtual function; no member nor concrete function. Inheriting from [Drawable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/drawable.d) allows to draw instances of your class the same way as DSFML classes:
+[Drawable](http://dsfml.com/dsfml/graphics/drawable.html) only declares one virtual function; no member nor concrete function. Inheriting from [Drawable](http://dsfml.com/dsfml/graphics/drawable.html) allows to draw instances of your class the same way as DSFML classes:
 
 ```
 class MyEntity : Drawable
@@ -181,9 +181,9 @@ MyEntity entity = ...;
 window.draw(entity); // internally calls entity.draw
 ```
 
-Note that doing this is not mandatory, you could just have a similar draw function in your class, and call it with `entity.draw(window)`. But the other way, by implementing [Drawable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/drawable.d), is nicer and more consistent. And in case you need to store an array of drawable objects, you can do it without extra work since all drawable objects (DSFML's and yours) use the same known interface.
+Note that doing this is not mandatory, you could just have a similar draw function in your class, and call it with `entity.draw(window)`. But the other way, by implementing [Drawable](http://dsfml.com/dsfml/graphics/drawable.html), is nicer and more consistent. And in case you need to store an array of drawable objects, you can do it without extra work since all drawable objects (DSFML's and yours) use the same known interface.
 
-The other interface, [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d), shouldn't be implemented directly; that functionality is encapsulated for you with the `NormalTransformable` mixin. Including this mixin automatically adds to your class the same transformation functions and properties as other DSFML classes (position, rotation, scale, ...). You can learn more about this class in the [Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md) tutorial.
+The other interface, [Transformable](http://dsfml.com/dsfml/graphics/transformable.html), shouldn't be implemented directly; that functionality is encapsulated for you with the `NormalTransformable` mixin. Including this mixin automatically adds to your class the same transformation functions and properties as other DSFML classes (position, rotation, scale, ...). You can learn more about this class in the [Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md) tutorial.
 
 So, using these two interfaces and a vertex array (in this example we'll also add a texture), here is what a typical DSFML-like graphical class would look like:
 

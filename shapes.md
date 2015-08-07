@@ -14,10 +14,9 @@ Transformation (Position, Rotation, Scale)
 
 These properties are common to all the DSFML graphical classes, so they are explained in a separate tutorial: [Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md).
 
-Color
--
+### Color
 
-One of the most basic property of a shape is its color, that you can change with the `setFillColor` function.
+One of the most basic property of a shape is its color, that you can change with the `setFillColor()` function.
 
 ```D
 auto shape = new CircleShape(50);
@@ -28,10 +27,9 @@ shape.fillColor = Color(100, 250, 50);
 
 ![A Colored Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-color.png "A Colored Shape")
 
-Outline
--
+### Outline
 
-Shapes can have an outline. You can select the thickness and color of the outline with the `setOutlineThickness` and `setOutlineColor` functions.
+Shapes can have an outline. You can set the thickness and color of the outline with the `outlineThickness` and `outlineColor` properties.
 
 ```D
 auto shape = new CircleShape(50);
@@ -48,8 +46,7 @@ By default, the outline expands outside the shape (if you have a circle with a r
 
 To disable the outline, set its thickness to 0. If you want the outline only, you can set the fill color to `Color.Transparent`.
 
-Texture
--
+### Texture
 
 Shapes can also be textured, like sprites. To specify which part of the texture must be mapped to the shape, you must specify the texture rectangle with the `textureRect` property. It takes the texture rectangle to map to the bounding rectangle of the shape. This method doesn't offer maximum flexibility, but it is much easier to use than individually setting the texture coordinates of each point of the shape.
 
@@ -79,10 +76,9 @@ window.draw(shape);
 Built-in shape types
 ---
 
-Rectangles
--
+### Rectangles
 
-To draw rectangles, you must use the [RectangleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rectangleshape.d) class. It has only one attribute: the size of the rectangle.
+To draw rectangles, you must use the [RectangleShape](http://dsfml.com/dsfml/graphics/rectangleshape.d) class. It has only one attribute: the size of the rectangle.
 
 ```D
 // define a 120x50 rectangle
@@ -94,10 +90,9 @@ rectangle.size = Vector2f(100, 100);
 
 ![A Rectangle Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-rectangle.png "A Rectangle Shape")
 
-Circles
--
+### Circles
 
-Circles are represented by the [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) class. It has two attributes: the radius and the number of sides. The number of sides is an optional attribute, it allows you to adjust the "quality" of the circle: circles have to be simulated by polygons with many sides (the graphics card is unable to draw a perfect circle directly), and this attribute defines how many sides your circle will have. If you draw small circles, you'll probably need only a few sides. If you draw big circles, or zoom on regular circles, you'll most likely need more sides.
+Circles are represented by the [CircleShape](http://dsfml.com/dsfml/graphics/circleshape.html) class. It has two attributes: the radius and the number of sides. The number of sides is an optional attribute, it allows you to adjust the "quality" of the circle: circles have to be simulated by polygons with many sides (the graphics card is unable to draw a perfect circle directly), and this attribute defines how many sides your circle will have. If you draw small circles, you'll probably need only a few sides. If you draw big circles, or zoom on regular circles, you'll most likely need more sides.
 
 ```D
 // define a circle with radius = 200
@@ -112,10 +107,9 @@ circle.pointCount = 100;
 
 ![A Circle Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-circle.png "A Circle Shape")
 
-Regular polygons
--
+### Regular polygons
 
-There's no dedicated class for regular polygons, in fact you can get a regular polygon of any number of sides with the [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) class: indeed, since circles are simulated by polygons with many sides, you just have to play with the number of sides to get the desired polygons. A [CircleShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/circleshape.d) with 3 points is a triangle, with 4 points it's a square, etc.
+There's no dedicated class for regular polygons, in fact you can get a regular polygon of any number of sides with the [CircleShape](http://dsfml.com/dsfml/graphics/circleshape.html) class: indeed, since circles are simulated by polygons with many sides, you just have to play with the number of sides to get the desired polygons. A [CircleShape](http://dsfml.com/dsfml/graphics/circleshape.html) with 3 points is a triangle, with 4 points it's a square, etc.
 
 ```D
 // define a triangle
@@ -130,10 +124,9 @@ CircleShape octagon = new CircleShape(80, 8);
 
 ![Regular Polygons](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-regular.png "Regular Polygons")
 
-Convex shapes
--
+### Convex shapes
 
-The [ConvexShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/convexshape.d) class is the ultimate shape class: it allows you to define any shape, as long as it stays convex. Indeed, DSFML is unable to draw concave shapes; if you need to draw a concave shape, you'll have to split it into multiple convex polygons (if possible).
+The [ConvexShape](http://dsfml.com/dsfml/graphics/convexshape.html) class is the ultimate shape class: it allows you to define any shape, as long as it stays convex. Indeed, DSFML is unable to draw concave shapes; if you need to draw a concave shape, you'll have to split it into multiple convex polygons (if possible).
 
 To define a convex shape, you must first set the total number of points, and then define these points.
 
@@ -152,14 +145,13 @@ convex.setPoint(3, new Vector2f(30, 100));
 convex.setPoint(4, new Vector2f(0, 50));
 ```
 
-> It is very important to define the points of a convex shape either in clockwise or anticlockwise order. If you define them in a random order, the result will be undefined.
+> It is very important to define the points of a convex shape either in clockwise or counter-clockwise order. If you define them in a random order, the result will be undefined.
 
 ![A Convex Shape](http://www.sfml-dev.org/tutorials/2.0/images/graphics-shape-convex.png "A Convex Shape")
 
-Officially, [ConvexShape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/convexshape.d) can only create convex shapes. But in fact, its requirements are a little more relaxed. In fact, the only technical constraint that your shape must follow, is that if you draw a line from its center of gravity to any of its point, you mustn't cross an edge. With this relaxed definition, you can for example draw stars.
+Officially, [ConvexShape](http://dsfml.com/dsfml/graphics/convexshape.html) can only create convex shapes. But in fact, its requirements are a little more relaxed. In fact, the only technical constraint that your shape must follow, is that if you draw a line from its center of gravity to any of its point, you mustn't cross an edge. With this relaxed definition, you can for example draw stars.
 
-Lines
--
+### Lines
 
 There's no shape class for lines. The reason is simple: if your line has a thickness, it is a rectangle; if it doesn't, it can be drawn with a line primitive.
 
@@ -191,12 +183,12 @@ To learn more about vertices and primitives, you can read the [Vertex Arrays](ht
 Custom shape types
 ---
 
-You can extend the set of shape classes with your own shape types. To do so, you must derive from [Shape](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/shape.d) and override two functions:
+You can extend the set of shape classes with your own shape types. To do so, you must derive from [Shape](http://dsfml.com/dsfml/graphics/shape.html) and override two functions:
 
-+ `getPointCount`: return the number of points of the shape
-+ `getPoint`: return a point of the shape
++ `getPointCount()`: return the number of points of the shape
++ `getPoint()`: return a point of the shape
 
-You must also call the `update` protected function whenever the points of your shape change, so that the base class knows about it and can update its internal state.
+You must also call the `update()` protected function whenever the points of your shape change, so that the base class knows about it and can update its internal state.
 
 Here is a complete example of a custom shape class: EllipseShape.
 
@@ -253,7 +245,7 @@ class EllipseShape : Shape
 Antialiased Shapes
 ---
 
-There's no option to antialias a single shape. If you want to get antialiased shapes (ie. shapes with smooth edges), you must enable antialiasing globally when you create the window, with the corresponding attribute of the [ContextSettings](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/contextsettings.d) structure.
+There's no option to antialias a single shape. If you want to get antialiased shapes (ie. shapes with smooth edges), you must enable antialiasing globally when you create the window, with the corresponding attribute of the [ContextSettings](http://dsfml.com/dsfml/window/contextsettings.html) structure.
 
 ```D
 ContextSettings settings = new ContextSettings();
