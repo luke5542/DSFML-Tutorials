@@ -13,7 +13,7 @@ To summarize, views are what you need if you want to scroll, rotate or zoom your
 Defining What the View Views
 ---
 
-The class which encapsulates views in DSFML is [View](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/view.d). It can be constructed directly with a definition of the area to view:
+The class which encapsulates views in DSFML is [View](http://dsfml.com/dsfml/graphics/view.html). It can be constructed directly with a definition of the area to view:
 
 ```D
 // create a view with the rectangular area of the 2D world to show
@@ -40,7 +40,7 @@ view2.size = Vector2f(200, 200);
 
 Once your view is defined, you can transform it to make it show a translated/rotated/scaled version of your 2D world.
 
-**Moving (Scrolling) the View**
+### Moving (Scrolling) the View
 
 Unlike drawable entities, such as sprites or shapes whose positions are defined by their top-left corner (and can be changed to any other point), views are always manipulated by their center -- this is simply more convenient. That's why the property to change the position of a view is named center, and not position.
 
@@ -54,7 +54,7 @@ view.move(Vector2f(100, 100));
 
 ![A Translated View](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-translated.png "A Translated View")
 
-**Rotating the View**
+### Rotating the View
 
 To rotate a view, use the `rotation` property.
 
@@ -68,7 +68,7 @@ view.rotation = view.rotation + 5;
 
 ![A Rotated View](http://www.sfml-dev.org/tutorials/2.3/images/graphics-view-rotated.png "A Rotated View")
 
-**Zooming (Scaling) the View**
+### Zooming (Scaling) the View
 
 Zooming in (or out) a view is done through to resizing it, so the function to use is setSize.
 
@@ -126,7 +126,7 @@ minimapView.viewport = FloatRect(0.75f, 0, 0.25f, 0.25f);
 Using a View
 ---
 
-To draw something using a view, you must draw it after setting the `view` property of the target to which you are drawing ([RenderWindow](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/renderwindow.d) or [RenderTexture](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/rendertexture.d)).
+To draw something using a view, you must draw it after setting the `view` property of the target to which you are drawing ([RenderWindow](http://dsfml.com/dsfml/graphics/renderwindow.html) or [RenderTexture](http://dsfml.com/dsfml/graphics/rendertexture.html)).
 
 ```D
 // let's define a view

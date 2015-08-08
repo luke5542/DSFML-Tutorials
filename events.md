@@ -9,9 +9,9 @@ This tutorial is a detailed list of window events. It describes them, and shows 
 The Event Type
 ---
 
-Before dealing with events, it is important to understand what the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) type is, and how to correctly use it. [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) is a union, which means that only one of its member is valid at a time (remember that, in D, all the members of a union share the same memory space). The valid member is the one that matches the event type, for example `event.key` for a `KeyPressed` event. Trying to read any other member will result in an undefined behaviour (most likely: random or invalid values). So never try to use an event member that doesn't match its type.
+Before dealing with events, it is important to understand what the [Event](http://dsfml.com/dsfml/window/event.html) type is, and how to correctly use it. [Event](http://dsfml.com/dsfml/window/event.html) is a union, which means that only one of its member is valid at a time (remember that, in D, all the members of a union share the same memory space). The valid member is the one that matches the event type, for example `event.key` for a `KeyPressed` event. Trying to read any other member will result in an undefined behaviour (most likely: random or invalid values). So never try to use an event member that doesn't match its type.
 
-[Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) instances are filled by the `pollEvent` (or `waitEvent`) function of the [Window](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/window.d) class. Only these two functions can produce valid events, any attempt to use a [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) without first a successful call to `pollEvent` (or `waitEvent`) will result in the same undefined behaviour that I mentioned above.
+[Event](http://dsfml.com/dsfml/window/event.html) instances are filled by the `pollEvent()` (or `waitEvent()`) function of the [Window](http://dsfml.com/dsfml/window/window.html) class. Only these two functions can produce valid events, any attempt to use an [Event](http://dsfml.com/dsfml/window/event.html) without first a successful call to `pollEvent()` (or `waitEvent()`) will result in the same undefined behaviour that I mentioned above.
 
 To be clear, here is what a typical event loop looks like:
 
@@ -41,7 +41,7 @@ while(window.pollEvent(event))
 }
 ```
 
-> Read the above paragraph once again and make sure that it's printed in your head, the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union causes too many problems to inadvertent programmers.
+> Read the above paragraph once again and make sure that it's printed in your head, the [Event](http://dsfml.com/dsfml/window/event.html) union causes too many problems to inadvertent programmers.
 
 Alright, now we can see what events DSFML supports, what they mean and how to use them properly.
 
@@ -53,7 +53,7 @@ The `Event.EventType.Closed` event is triggered when the user wants to close the
 
 A typical code will just call `window.close()` in reaction to this event, to actually close the window. But you may also want to do something, like saving the current application state or asking the user what to do. If you don't do anything, the window remains open.
 
-There's no member associated to this event in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
+There's no member associated to this event in the [Event](http://dsfml.com/dsfml/window/event.html) union.
 
 ```D
 if (event.type == Event.EventType.Closed)
@@ -63,7 +63,7 @@ if (event.type == Event.EventType.Closed)
 The Resized Event
 ---
 
-The `Event.EventType.Resized` event is triggered when the window is resized, either by a user action or programmatically by calling `window.setSize`.
+The `Event.EventType.Resized` event is triggered when the window is resized, either by a user action or programmatically by setting `window.size`.
 
 You can use this event to adjust the rendering settings: the viewport if you use OpenGL directly, or the current view if you use dsfml-graphics.
 
@@ -85,7 +85,7 @@ The `Event.EventType.LostFocus` and `Event.EventType.GainedFocus` events are tri
 
 This event can be used if you want to pause your game when the window is inactive.
 
-There's no member associated to these events in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
+There's no member associated to these events in the [Event](http://dsfml.com/dsfml/window/event.html) union.
 
 ```D
 if (event.type == Event.EventType.LostFocus)
@@ -125,7 +125,7 @@ If a key is held, multiple `KeyPressed` events will be generated, at the default
 
 This event is the one to use if you want to trigger an action exactly once when a key is pressed or released, like making a character jump with space, or exiting something with escape.
 
-> Sometimes, people try to use the KeyPressed event to implement smooth movement. Doing so will not produce smooth movements, because when you hold a key you only get a few events (remember, the repeat delay). Smooth movements can only be achieved by using real-time keyboard input with [Keyboard](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/keyboard.d) (see the [dedicated tutorial](https://github.com/luke5542/DSFML-Tutorials/blob/master/inputs.md)).
+> Sometimes, people try to use the KeyPressed event to implement smooth movement. Doing so will not produce smooth movements, because when you hold a key you only get a few events (remember, the repeat delay). Smooth movements can only be achieved by using real-time keyboard input with [Keyboard](http://dsfml.com/dsfml/window/keyboard.html) (see the [dedicated tutorial](https://github.com/luke5542/DSFML-Tutorials/blob/master/inputs.md)).
 
 The member associated to these events is event.key, it contains the code of the pressed/released key, as well as the current state of modifier keys (alt, control, shift, system).
 
@@ -204,7 +204,7 @@ The MouseEntered and MouseLeft Event
 
 The `Event.EventType.MouseEntered` and `Event.EventType.MouseLeft` events are triggered when the mouse cursor enters/leaves the window.
 
-There's no member associated to these events in the [Event](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/event.d) union.
+There's no member associated to these events in the [Event](http://dsfml.com/dsfml/window/event.html) union.
 
 ```D
 if (event.type == Event.EventType.MouseEntered)

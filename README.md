@@ -28,3 +28,9 @@ Graphics Module
 * [Position, Rotation, Scale: Transforming Entities](https://github.com/luke5542/DSFML-Tutorials/blob/master/transforms.md)
 * [Adding Special Effects with Shaders](https://github.com/luke5542/DSFML-Tutorials/blob/master/shaders.md)
 * [Controlling the 2D Camera with Views](https://github.com/luke5542/DSFML-Tutorials/blob/master/cameraviews.md)
+
+Audio Module
+===
+* [Recording Audio](https://github.com/luke5542/DSFML-Tutorials/blob/master/recording.md)
+* [Custom Audio Stream](https://github.com/luke5542/DSFML-Tutorials/blob/master/customaudiostream.md)
+* [Spatialization: Sounds in 3D ](https://github.com/luke5542/DSFML-Tutorials/blob/master/spatialization.md)

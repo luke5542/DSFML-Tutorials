@@ -10,9 +10,9 @@ This tutorial explains how to access global inputs: keyboard, mouse and joystick
 Keyboard
 ---
 
-The class that gives access to the keyboard state is [Keyboard](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/keyboard.d). It contains only one function, `isKeyPressed`, which checks the current state of a key (pressed or released). It is a static function, so you don't need to instanciate [Keyboard](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/keyboard.d) to use it.
+The class that gives access to the keyboard state is [Keyboard](http://dsfml.com/dsfml/window/keyboard.html). It contains only one function, `isKeyPressed()`, which checks the current state of a key (pressed or released). It is a static function, so you don't need to instantiate [Keyboard](http://dsfml.com/dsfml/window/keyboard.html) to use it.
 
-This function directly reads the keyboard state, ignoring the focus state of your window. This means that `isKeyPressed` may return true even if your window is inactive.
+This function directly reads the keyboard state, ignoring the focus state of your window. This means that `isKeyPressed()` may return true even if your window is inactive.
 
 ```D
 if (Keyboard.isKeyPressed(Keyboard.Key.Left))
@@ -24,12 +24,12 @@ if (Keyboard.isKeyPressed(Keyboard.Key.Left))
 
 Key codes are defined in the `Keyboard.Key` enum.
 
-> Some key codes may be missing, or interpreted incorrectly depending on your OS and keyboard layout. This is something that will be improved in a future version of SFML.
+> Some key codes may be missing, or interpreted incorrectly depending on your OS and keyboard layout. This is something that will be improved in a future version of DSFML.
 
 Mouse
 ---
 
-The class that gives access to the mouse state is [Mouse](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/mouse.d). Like its friend [Keyboard](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/keyboard.d), [Mouse](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/mouse.d) contains only static functions and is not meant to be instanciated (DSFML only handles a single mouse for the time being).
+The class that gives access to the mouse state is [Mouse](http://dsfml.com/dsfml/window/mouse.html). Like its friend [Keyboard](http://dsfml.com/dsfml/window/keyboard.html), [Mouse](http://dsfml.com/dsfml/window/mouse.html) contains only static functions and is not meant to be instantiated (DSFML only handles a single mouse for the time being).
 
 You can check if buttons are pressed:
 
@@ -64,9 +64,9 @@ There's no function for reading the current state of the mouse wheel. Indeed, th
 Joystick
 ---
 
-The class that gives access to the joysticks state is [Joystick](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/joystick.d). Like the other classes of this tutorial, it contains static functions only.
+The class that gives access to the joysticks state is [Joystick](http://dsfml.com/dsfml/window/joystick.html). Like the other classes of this tutorial, it contains static functions only.
 
-Joysticks are identified by their index (0 to 7, since DSFML supports up to 8 joysticks). Therefore, the first argument of every function of [Joystick](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/window/joystick.d) is the index of the joystick that you want to query.
+Joysticks are identified by their index (0 to 7, since DSFML supports up to 8 joysticks). Therefore, the first argument of every function of [Joystick](http://dsfml.com/dsfml/window/joystick.html) is the index of the joystick that you want to query.
 
 You can check whether a joystick is connected or not:
 

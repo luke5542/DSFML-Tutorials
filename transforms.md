@@ -4,9 +4,9 @@ Position, rotation, scale: transforming entities
 Transforming SFML entities
 ---
 
-All SFML classes (sprites, text, shapes) use the same interface for transformations: [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d). This base class defines a simple API to position, rotate, and scale your entities. It doesn't provide maximum flexibility, but it rather defines an interface which is easy to understand and to use, and which covers 99% of use cases -- for the other 1%, see the last chapters.
+All SFML classes (sprites, text, shapes) use the same interface for transformations: [Transformable](http://dsfml.com/dsfml/graphics/transformable.html). This base class defines a simple API to position, rotate, and scale your entities. It doesn't provide maximum flexibility, but it rather defines an interface which is easy to understand and to use, and which covers 99% of use cases -- for the other 1%, see the last chapters.
 
-[Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) defines four properties: position, rotation, scale and origin; they are standard D `@property` fields. These transformation components are all independent from each other: if you want to change the orientation of the entity, you just have to set its rotation property, you don't have to care about the current position and scale.
+[Transformable](http://dsfml.com/dsfml/graphics/transformable.html) defines four properties: position, rotation, scale and origin; they are standard D `@property` fields. These transformation components are all independent from each other: if you want to change the orientation of the entity, you just have to set its rotation property, you don't have to care about the current position and scale.
 
 Position
 --
@@ -99,7 +99,7 @@ Note that changing the origin also changes the visual position of the entity, al
 Transforming your own classes
 ---
 
-[Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) is not only made for DSFML classes, it can also be a base (or member) of you own classes. On thing to mention, first, that's specific to DSFML: all of the built-in transformable types (i.e. Sprite, Text, etc) use a `NormalTransformable` mixin that provides a standard implementation for classes that wish to implement the `Transformable` interface. If you wish to maintain identical functionality in your own DSFML classes, you should do the same:
+[Transformable](http://dsfml.com/dsfml/graphics/transformable.html) is not only made for DSFML classes, it can also be a base (or member) of you own classes. On thing to mention, first, that's specific to DSFML: all of the built-in transformable types (i.e. Sprite, Text, etc) use a `NormalTransformable` mixin that provides a standard implementation for classes that wish to implement the `Transformable` interface. If you wish to maintain identical functionality in your own DSFML classes, you should do the same:
 
 ```D
 class MyGraphicalEntity : Transformable
@@ -114,14 +114,14 @@ entity.rotation = 110;
 entity.scale = Vector2f(0.5f, 0.2f);
 ```
 
-To make use of the final transform of the entity (most likely to draw it), call the `getTransform()` function. This function returns a [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d); see below for more explanations about it, and how to use it to transform a DSFML entity.
+To make use of the final transform of the entity (most likely to draw it), call the `getTransform()` function. This function returns a [Transform](http://dsfml.com/dsfml/graphics/transform.html); see below for more explanations about it, and how to use it to transform a DSFML entity.
 
 Custom transforms
 ---
 
-The [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) interface is easy to use, but it is also limited. Some users need more power, they need to specify a final transformation as a custom combination of individual transformations. For this kind of users, a lower-level class is available: [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d). It is nothing more than a 3x3 matrix, so it can represent any transformation in the 2D space.
+The [Transformable](http://dsfml.com/dsfml/graphics/transformable.html) interface is easy to use, but it is also limited. Some users need more power, they need to specify a final transformation as a custom combination of individual transformations. For this kind of users, a lower-level class is available: [Transform](http://dsfml.com/dsfml/graphics/transform.html). It is nothing more than a 3x3 matrix, so it can represent any transformation in the 2D space.
 
-There are many ways to construct a [Transform](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transform.d):
+There are many ways to construct a [Transform](http://dsfml.com/dsfml/graphics/transform.html):
 
 * by using the predefined functions for the most common transformations (translation, rotation, scale)
 * by combining two transforms
@@ -170,7 +170,7 @@ states.transform = transform;
 window.draw(entity, states);
 ```
 
-If your entity is a [Transformable](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/transformable.d) (sprite, text, shape), with its own internal transform, then both are combined to produce the final transform.
+If your entity is a [Transformable](http://dsfml.com/dsfml/graphics/transformable.html) (sprite, text, shape), with its own internal transform, then both are combined to produce the final transform.
 
 Bounding boxes
 ---

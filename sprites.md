@@ -8,7 +8,7 @@ Most (if not all) of you are already familiar with these two very common objects
 
 A texture is an image. But we call it "texture" because it has a very specific role: being mapped to a 2D entity.
 
-A [Sprite](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/sprite.d) is nothing more than a textured rectangle.
+A [Sprite](http://dsfml.com/dsfml/graphics/sprite.html) is nothing more than a textured rectangle.
 
 ![Rectangular Entity + Texture = Sprite](http://www.sfml-dev.org/tutorials/2.0/images/graphics-sprites-definition.png "Rectangular Entity + Texture = Sprite")
 
@@ -29,9 +29,9 @@ if (!texture.loadFromFile("image.png"))
 }
 ```
 
-> The `loadFromFile` method sometimes fails with no obvious reason. First, check the error message printed by DSFML in the standard output (check the console). If the message is "unable to open file", make sure that the working directory (which is the directory any file path will be interpreted relatively to) is what you think it is: when you run the application from the explorer, the working directory is the executable folder, but when you launch your program from your IDE (Visual Studio, Code.Blocks, ...) the working directory is sometimes set to the project directory instead. This can generally be changed easily in the project settings.
+> The `loadFromFile()` method sometimes fails with no obvious reason. First, check the error message printed by DSFML in the standard output (check the console). If the message is "unable to open file", make sure that the working directory (which is the directory any file path will be interpreted relatively to) is what you think it is: when you run the application from the explorer, the working directory is the executable folder, but when you launch your program from your IDE (Visual Studio, Code::Blocks, ...) the working directory is sometimes set to the project directory instead. This can generally be changed easily in the project settings.
 
-You can also load an image file from memory (`loadFromMemory`), from a custom input stream (`loadFromStream`), or from an already loaded image (`loadFromImage`). The latter loads the texture from a [Image](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/image.d), which is a utility class that helps to manipulate images (modify pixels, create transparency channel, etc.). The pixels of an [Image](https://github.com/Jebbs/DSFML/blob/master/src/dsfml/graphics/image.d) stay in system memory, which ensures that operations on them will be as fast as possible, as opposed to the pixels of a texture which reside in video memory and are therefore slow to retrieve or update -- but very fast to draw.
+You can also load an image file from memory (`loadFromMemory()`), from a custom input stream (`loadFromStream()`), or from an already loaded image (`loadFromImage()`). The latter loads the texture from a [Image](http://dsfml.com/dsfml/graphics/image.html), which is a utility class that helps to manipulate images (modify pixels, create transparency channel, etc.). The pixels of an [Image](http://dsfml.com/dsfml/graphics/image.html) stay in system memory, which ensures that operations on them will be as fast as possible, as opposed to the pixels of a texture which reside in video memory and are therefore slow to retrieve or update -- but very fast to draw.
 
 DSFML supports the most common file formats. The full list is available in the API documentation.
 
