@@ -35,3 +35,8 @@ Audio Module
 * [Recording Audio](https://github.com/luke5542/DSFML-Tutorials/blob/master/recording.md)
 * [Custom Audio Stream](https://github.com/luke5542/DSFML-Tutorials/blob/master/customaudiostream.md)
 * [Spatialization: Sounds in 3D ](https://github.com/luke5542/DSFML-Tutorials/blob/master/spatialization.md)
+
+Networking Module
+===
+* [Communicating with Sockets](https://github.com/luke5542/DSFML-Tutorials/blob/master/sockets.md)
+* [Using and Extending Packets](https://github.com/luke5542/DSFML-Tutorials/blob/master/packets.md)
