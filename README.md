@@ -31,6 +31,7 @@ Graphics Module
 
 Audio Module
 ===
+* [Playing Sounds and Music](https://github.com/luke5542/DSFML-Tutorials/blob/master/soundsandmusic.md)
 * [Recording Audio](https://github.com/luke5542/DSFML-Tutorials/blob/master/recording.md)
 * [Custom Audio Stream](https://github.com/luke5542/DSFML-Tutorials/blob/master/customaudiostream.md)
 * [Spatialization: Sounds in 3D ](https://github.com/luke5542/DSFML-Tutorials/blob/master/spatialization.md)

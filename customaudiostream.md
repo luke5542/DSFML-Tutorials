@@ -61,7 +61,7 @@ If you're not familiar enough with threading, you can refer to the corresponding
 Using your audio stream
 ---
 
-Now that you have defined your own audio stream class, let's see how to use it. In fact, things are very similar to what's shown in the [tutorial about music](https://github.com/luke5542/DSFML-Tutorials/blob/master/playingsound.md). You can control playback with the `play()`, `pause()`, `stop()`, and `setPlayingOffset()` functions. You can also play with the sound's properties, such as the volume or the pitch. You can refer to the API documentation or to the other audio tutorials for more details.
+Now that you have defined your own audio stream class, let's see how to use it. In fact, things are very similar to what's shown in the [tutorial about music](https://github.com/luke5542/DSFML-Tutorials/blob/master/soundsandmusic.md). You can control playback with the `play()`, `pause()`, `stop()`, and `setPlayingOffset()` functions. You can also play with the sound's properties, such as the volume or the pitch. You can refer to the API documentation or to the other audio tutorials for more details.
 
 A simple example
 ---
@@ -79,13 +79,13 @@ class MyStream : SoundStream
         short[] m_samples;
         size_t m_currentSample;
     }
-    
+
     void load(const(SoundBuffer) buffer)
     {
         // extract the audio samples from the sound buffer to our own container
         m_samples = buffer.getSamples().dup;
 
-        // reset the current playing position 
+        // reset the current playing position
         m_currentSample = 0;
 
         // initialize the base class
