@@ -104,7 +104,7 @@ class ZipPacket : Packet
 }
 ```
 
-Such a packet class can be used exactly like [Packet](http://dsfml.com/dsfml/network/packet.html). All your operator overloads will apply to them as well.
+Such a packet class can be used exactly like [Packet](http://dsfml.com/dsfml/network/packet.html). All your method overrides and overloads will apply to them as well.
 
 ```D
 ZipPacket packet = new ZipPacket();
