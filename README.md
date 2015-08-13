@@ -40,3 +40,4 @@ Networking Module
 ===
 * [Communicating with Sockets](https://github.com/luke5542/DSFML-Tutorials/blob/master/sockets.md)
 * [Using and Extending Packets](https://github.com/luke5542/DSFML-Tutorials/blob/master/packets.md)
+* [Web Requests with HTTP](https://github.com/luke5542/DSFML-Tutorials/blob/master/http.md)
